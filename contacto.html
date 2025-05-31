@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Venttiun</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <!-- Encabezado de la página -->
+    <header class="encabezado-principal">
+        <nav class="navegacion-principal">
+            <div class="contenedor-logo">
+                <h1 class="nombre-empresa">Venttiun</h1>
+            </div>
+            <ul class="menu-navegacion">
+                <li><a href="index.html" class="enlace-navegacion">Inicio</a></li>
+                <li><a href="index.html#acerca-de" class="enlace-navegacion">Acerca de</a></li>
+                <li><a href="index.html#servicios" class="enlace-navegacion">Servicios</a></li>
+                <li><a href="contacto.html" class="enlace-navegacion activo">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección principal de contacto -->
+    <section class="seccion-contacto">
+        <div class="contenedor-principal">
+            <h1 class="titulo-principal-contacto">Contáctanos</h1>
+            <p class="descripcion-contacto">
+                Estamos aquí para ayudarte. Ponte en contacto con nosotros a través de cualquiera 
+                de los siguientes medios o rellena el formulario y te responderemos lo antes posible.
+            </p>
+
+            <div class="contenedor-contacto">
+                <!-- Información de contacto -->
+                <div class="informacion-contacto-detallada">
+                    <h2 class="titulo-informacion">Información de Contacto</h2>
+                    
+                    <div class="metodo-contacto">
+                        <h3 class="titulo-metodo">📧 Email</h3>
+                        <p class="detalle-contacto">info@venttiun.com</p>
+                        <p class="descripcion-metodo">Respuesta en 24 horas</p>
+                    </div>
+
+                    <div class="metodo-contacto">
+                        <h3 class="titulo-metodo">📞 Teléfono</h3>
+                        <p class="detalle-contacto">+34 123 456 789</p>
+                        <p class="descripcion-metodo">Lunes a Viernes: 9:00 - 18:00</p>
+                    </div>
+
+                    <div class="metodo-contacto">
+                        <h3 class="titulo-metodo">📍 Dirección</h3>
+                        <p class="detalle-contacto">Calle Principal 123</p>
+                        <p class="detalle-contacto">28001 Madrid, España</p>
+                        <p class="descripcion-metodo">Visitas con cita previa</p>
+                    </div>
+                </div>
+
+                <!-- Formulario de contacto -->
+                <div class="contenedor-formulario">
+                    <h2 class="titulo-formulario">Envíanos un Mensaje</h2>
+                    
+                    <form class="formulario-contacto" id="formulario-contacto" action="#" method="POST">
+                        <div class="grupo-campo">
+                            <label for="nombre-completo" class="etiqueta-campo">Nombre Completo *</label>
+                            <input 
+                                type="text" 
+                                id="nombre-completo" 
+                                name="nombre-completo" 
+                                class="campo-entrada" 
+                                placeholder="Tu nombre completo"
+                                required
+                            >
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="correo-electronico" class="etiqueta-campo">Correo Electrónico *</label>
+                            <input 
+                                type="email" 
+                                id="correo-electronico" 
+                                name="correo-electronico" 
+                                class="campo-entrada" 
+                                placeholder="tu.email@ejemplo.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="telefono-contacto" class="etiqueta-campo">Teléfono</label>
+                            <input 
+                                type="tel" 
+                                id="telefono-contacto" 
+                                name="telefono-contacto" 
+                                class="campo-entrada" 
+                                placeholder="+34 123 456 789"
+                            >
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="empresa-organizacion" class="etiqueta-campo">Empresa u Organización</label>
+                            <input 
+                                type="text" 
+                                id="empresa-organizacion" 
+                                name="empresa-organizacion" 
+                                class="campo-entrada" 
+                                placeholder="Nombre de tu empresa"
+                            >
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="asunto-mensaje" class="etiqueta-campo">Asunto *</label>
+                            <select id="asunto-mensaje" name="asunto-mensaje" class="campo-seleccion" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="consulta-general">Consulta General</option>
+                                <option value="solicitud-presupuesto">Solicitud de Presupuesto</option>
+                                <option value="soporte-tecnico">Soporte Técnico</option>
+                                <option value="colaboracion">Propuesta de Colaboración</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="mensaje-detallado" class="etiqueta-campo">Mensaje *</label>
+                            <textarea 
+                                id="mensaje-detallado" 
+                                name="mensaje-detallado" 
+                                class="campo-texto-largo" 
+                                rows="6" 
+                                placeholder="Escribe tu mensaje aquí. Incluye todos los detalles relevantes para que podamos ayudarte mejor."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="grupo-campo-checkbox">
+                            <input 
+                                type="checkbox" 
+                                id="acepto-privacidad" 
+                                name="acepto-privacidad" 
+                                class="checkbox-privacidad"
+                                required
+                            >
+                            <label for="acepto-privacidad" class="etiqueta-checkbox">
+                                Acepto la <a href="#" class="enlace-privacidad">política de privacidad</a> 
+                                y el tratamiento de mis datos personales *
+                            </label>
+                        </div>
+
+                        <div class="grupo-botones">
+                            <button type="submit" class="boton-enviar">
+                                Enviar Mensaje
+                            </button>
+                            <button type="reset" class="boton-limpiar">
+                                Limpiar Formulario
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="pie-pagina">
+        <div class="contenedor-principal">
+            <div class="informacion-contacto">
+                <h3 class="titulo-contacto">Información de Contacto</h3>
+                <p class="dato-contacto">Email: info@venttiun.com</p>
+                <p class="dato-contacto">Teléfono: +34 123 456 789</p>
+                <p class="dato-contacto">Dirección: Calle Principal 123, Ciudad</p>
+            </div>
+            <div class="derechos-autor">
+                <p>&copy; 2024 Venttiun. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/funciones-principales.js"></script>
+    <script src="js/formulario-contacto.js"></script>
+</body>
+</html> 

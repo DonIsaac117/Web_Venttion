@@ -1,0 +1,525 @@
+/* ========================================
+   ESTILOS GENERALES Y CONFIGURACIÓN BASE
+   ======================================== */
+
+/* Configuración base para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuración del documento HTML */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+/* Estilos del cuerpo principal */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #ffffff;
+}
+
+/* Contenedor principal para centrar contenido */
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========================================
+   ENCABEZADO Y NAVEGACIÓN
+   ======================================== */
+
+.encabezado-principal {
+    background-color: #2c3e50;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.navegacion-principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nombre-empresa {
+    color: #ecf0f1;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.menu-navegacion {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.enlace-navegacion {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.enlace-navegacion:hover,
+.enlace-navegacion.activo {
+    background-color: #3498db;
+    color: white;
+}
+
+/* ========================================
+   SECCIÓN DE INICIO
+   ======================================== */
+
+.seccion-inicio {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.titulo-bienvenida {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.descripcion-empresa {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+}
+
+.boton-contacto {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.boton-contacto:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   SECCIONES GENERALES
+   ======================================== */
+
+.seccion-acerca-de,
+.seccion-servicios {
+    padding: 80px 0;
+}
+
+.seccion-acerca-de {
+    background-color: #f8f9fa;
+}
+
+.titulo-seccion {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #2c3e50;
+}
+
+.texto-descripcion {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #555;
+}
+
+/* ========================================
+   VALORES DE LA EMPRESA
+   ======================================== */
+
+.valores-empresa {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.valor-individual {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.valor-individual:hover {
+    transform: translateY(-5px);
+}
+
+.titulo-valor {
+    color: #3498db;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.descripcion-valor {
+    color: #666;
+    line-height: 1.7;
+}
+
+/* ========================================
+   SECCIÓN DE SERVICIOS
+   ======================================== */
+
+.grid-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.tarjeta-servicio {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    border-top: 4px solid #3498db;
+}
+
+.tarjeta-servicio:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.titulo-servicio {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.descripcion-servicio {
+    color: #666;
+    line-height: 1.7;
+}
+
+/* ========================================
+   PÁGINA DE CONTACTO
+   ======================================== */
+
+.seccion-contacto {
+    padding: 120px 0 80px;
+    background-color: #f8f9fa;
+}
+
+.titulo-principal-contacto {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.descripcion-contacto {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #555;
+}
+
+.contenedor-contacto {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+/* ========================================
+   INFORMACIÓN DE CONTACTO
+   ======================================== */
+
+.informacion-contacto-detallada {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.titulo-informacion {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.metodo-contacto {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.metodo-contacto:last-child {
+    border-bottom: none;
+}
+
+.titulo-metodo {
+    color: #3498db;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.detalle-contacto {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.3rem;
+}
+
+.descripcion-metodo {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   FORMULARIO DE CONTACTO
+   ======================================== */
+
+.contenedor-formulario {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-formulario {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.formulario-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.etiqueta-campo {
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.campo-entrada,
+.campo-seleccion,
+.campo-texto-largo {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.campo-entrada:focus,
+.campo-seleccion:focus,
+.campo-texto-largo:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.campo-texto-largo {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.grupo-campo-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.checkbox-privacidad {
+    margin-top: 0.2rem;
+}
+
+.etiqueta-checkbox {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.enlace-privacidad {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.enlace-privacidad:hover {
+    text-decoration: underline;
+}
+
+.grupo-botones {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.boton-enviar,
+.boton-limpiar {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.boton-enviar {
+    background-color: #27ae60;
+    color: white;
+    flex: 2;
+}
+
+.boton-enviar:hover {
+    background-color: #229954;
+}
+
+.boton-limpiar {
+    background-color: #95a5a6;
+    color: white;
+    flex: 1;
+}
+
+.boton-limpiar:hover {
+    background-color: #7f8c8d;
+}
+
+/* ========================================
+   PIE DE PÁGINA
+   ======================================== */
+
+.pie-pagina {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.informacion-contacto {
+    margin-bottom: 1rem;
+}
+
+.titulo-contacto {
+    margin-bottom: 1rem;
+    color: #3498db;
+}
+
+.dato-contacto {
+    margin: 0.5rem 0;
+    color: #bdc3c7;
+}
+
+.derechos-autor {
+    padding-top: 1rem;
+    border-top: 1px solid #34495e;
+    color: #95a5a6;
+}
+
+/* ========================================
+   DISEÑO RESPONSIVO
+   ======================================== */
+
+/* Tablets */
+@media (max-width: 768px) {
+    .navegacion-principal {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .menu-navegacion {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .titulo-bienvenida {
+        font-size: 2.5rem;
+    }
+
+    .descripcion-empresa {
+        font-size: 1.1rem;
+    }
+
+    .contenedor-contacto {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .grupo-botones {
+        flex-direction: column;
+    }
+
+    .valores-empresa,
+    .grid-servicios {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    .contenedor-principal {
+        padding: 0 15px;
+    }
+
+    .seccion-inicio {
+        padding: 100px 0 60px;
+    }
+
+    .titulo-bienvenida {
+        font-size: 2rem;
+    }
+
+    .titulo-seccion {
+        font-size: 2rem;
+    }
+
+    .titulo-principal-contacto {
+        font-size: 2.2rem;
+    }
+
+    .contenedor-formulario,
+    .informacion-contacto-detallada {
+        padding: 1.5rem;
+    }
+} 
