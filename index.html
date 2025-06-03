@@ -3,115 +3,768 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venttiun - Página Principal</title>
+    <title>VENTTION - Innovación Tecnológica para el Futuro</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
-    <!-- Encabezado de la página -->
-    <header class="encabezado-principal">
-        <nav class="navegacion-principal">
-            <div class="contenedor-logo">
-                <h1 class="nombre-empresa">Venttiun</h1>
+    <!-- Canvas para partículas de fondo -->
+    <canvas id="canvas-particulas" class="canvas-fondo"></canvas>
+    
+    <!-- Encabezado futurista -->
+    <header class="encabezado-futurista">
+        <nav class="navegacion-moderna">
+            <div class="contenedor-logo-moderno">
+                <div class="logo-venttion">
+                    <span class="logo-texto">VENTTION</span>
+                    <div class="logo-underline"></div>
+                </div>
             </div>
-            <ul class="menu-navegacion">
-                <li><a href="#inicio" class="enlace-navegacion">Inicio</a></li>
-                <li><a href="#acerca-de" class="enlace-navegacion">Acerca de</a></li>
-                <li><a href="#servicios" class="enlace-navegacion">Servicios</a></li>
-                <li><a href="contacto.html" class="enlace-navegacion">Contacto</a></li>
+            <ul class="menu-futurista">
+                <li><a href="#inicio" class="enlace-nav-moderno" data-section="inicio">Inicio</a></li>
+                <li><a href="#nosotros" class="enlace-nav-moderno" data-section="nosotros">Nosotros</a></li>
+                <li><a href="#servicios" class="enlace-nav-moderno" data-section="servicios">Servicios</a></li>
+                <li><a href="#tecnologia" class="enlace-nav-moderno" data-section="tecnologia">Tecnología</a></li>
+                <li><a href="#ventajas" class="enlace-nav-moderno" data-section="ventajas">Ventajas</a></li>
+                <li><a href="#contacto" class="enlace-nav-moderno" data-section="contacto">Contacto</a></li>
             </ul>
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
-    <!-- Sección principal de bienvenida -->
-    <section id="inicio" class="seccion-inicio">
-        <div class="contenedor-principal">
-            <h2 class="titulo-bienvenida">Bienvenido a Venttiun</h2>
-            <p class="descripcion-empresa">
-                Una empresa innovadora comprometida con la excelencia y el servicio al cliente.
-                Nos especializamos en brindar soluciones de calidad que impulsan el crecimiento de tu negocio.
+    <!-- Sección Hero Ultra-Moderna -->
+    <section id="inicio" class="seccion-hero-futurista">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-text">🚀 Start Up Tecnológica</span>
+                <div class="badge-glow"></div>
+            </div>
+            
+            <h1 class="hero-titulo">
+                <span class="titulo-linea-1">Transformamos</span>
+                <span class="titulo-linea-2">tu <span class="texto-gradient">Futuro Digital</span></span>
+                <span class="titulo-linea-3">con IA Avanzada</span>
+            </h1>
+            
+            <p class="hero-descripcion">
+                Integramos tecnologías de última generación para hacer que las organizaciones 
+                sean más rentables y productivas. Desarrollamos software innovador que optimiza 
+                procesos, reduce costos y potencia el crecimiento empresarial.
             </p>
-            <button class="boton-contacto" onclick="location.href='contacto.html'">
-                Contáctanos
-            </button>
+            
+            <div class="hero-estadisticas">
+                <div class="estadistica-item">
+                    <span class="numero-animado" data-valor="100">0</span>
+                    <span class="estadistica-texto">% Personalizable</span>
+                </div>
+                <div class="estadistica-item">
+                    <span class="numero-animado" data-valor="24">0</span>
+                    <span class="estadistica-texto">hrs Implementación</span>
+                </div>
+                <div class="estadistica-item">
+                    <span class="numero-animado" data-valor="99">0</span>
+                    <span class="estadistica-texto">% Uptime Garantizado</span>
+                </div>
+            </div>
+            
+            <div class="hero-botones">
+                <button class="boton-primario-futurista" id="btn-demo">
+                    <span class="boton-texto">Solicitar Demo</span>
+                    <div class="boton-efecto"></div>
+                </button>
+                <button class="boton-secundario-futurista" id="btn-conocer">
+                    <i data-lucide="play-circle"></i>
+                    <span>Conocer Más</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Visualización Futurista -->
+        <div class="hero-visual">
+            <div id="hero-3d-container" class="hero-3d-canvas"></div>
         </div>
     </section>
 
-    <!-- Sección Acerca de la empresa -->
-    <section id="acerca-de" class="seccion-acerca-de">
+    <!-- Sección Sobre Nosotros Expandida -->
+    <section id="nosotros" class="seccion-nosotros-moderna">
         <div class="contenedor-principal">
-            <h2 class="titulo-seccion">Acerca de Nosotros</h2>
-            <div class="contenido-acerca-de">
-                <p class="texto-descripcion">
-                    Venttiun es una empresa recién fundada con la visión de transformar 
-                    la industria mediante soluciones innovadoras y un enfoque centrado en el cliente.
+            <div class="seccion-header">
+                <div class="badge-seccion">
+                    <i data-lucide="zap"></i>
+                    <span>Quiénes Somos</span>
+                </div>
+                <h2 class="titulo-seccion-moderna">
+                    Pioneros en <span class="texto-gradient">Innovación Digital</span>
+                </h2>
+                <p class="subtitulo-seccion">
+                    VENTTION nace con la misión de revolucionar la manera en que las empresas 
+                    interactúan con la tecnología, creando soluciones que no solo resuelven 
+                    problemas actuales, sino que anticipan las necesidades del futuro.
                 </p>
-                <div class="valores-empresa">
-                    <div class="valor-individual">
-                        <h3 class="titulo-valor">Misión</h3>
-                        <p class="descripcion-valor">
-                            Proporcionar servicios excepcionales que superen las expectativas 
-                            de nuestros clientes y contribuyan a su éxito.
-                        </p>
+            </div>
+
+            <div class="timeline-innovacion">
+                <div class="timeline-item">
+                    <div class="timeline-punto">
+                        <i data-lucide="lightbulb"></i>
                     </div>
-                    <div class="valor-individual">
-                        <h3 class="titulo-valor">Visión</h3>
-                        <p class="descripcion-valor">
-                            Ser reconocidos como líderes en innovación y calidad en nuestro sector.
-                        </p>
+                    <div class="timeline-contenido">
+                        <h3>Visión Fundacional</h3>
+                        <p>Democratizar el acceso a tecnologías de IA y visión por computadora para empresas de todos los tamaños.</p>
                     </div>
-                    <div class="valor-individual">
-                        <h3 class="titulo-valor">Valores</h3>
-                        <p class="descripcion-valor">
-                            Integridad, innovación, excelencia y compromiso con nuestros clientes.
-                        </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-punto">
+                        <i data-lucide="code"></i>
+                    </div>
+                    <div class="timeline-contenido">
+                        <h3>Desarrollo Ágil</h3>
+                        <p>Metodología de implementación rápida que permite resultados visibles en las primeras 24 horas.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-punto">
+                        <i data-lucide="rocket"></i>
+                    </div>
+                    <div class="timeline-contenido">
+                        <h3>Escalabilidad Infinita</h3>
+                        <p>Soluciones diseñadas para crecer junto con tu negocio, adaptándose a nuevos desafíos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="valores-grid">
+                <div class="valor-card">
+                    <div class="valor-icono">
+                        <i data-lucide="target"></i>
+                    </div>
+                    <h3>Misión</h3>
+                    <p>Empoderar a las organizaciones con tecnología de vanguardia que transforme datos en decisiones inteligentes y acciones rentables.</p>
+                </div>
+                
+                <div class="valor-card">
+                    <div class="valor-icono">
+                        <i data-lucide="eye"></i>
+                    </div>
+                    <h3>Visión</h3>
+                    <p>Ser el catalizador tecnológico que impulse a las empresas hacia un futuro donde la eficiencia y la innovación definan el éxito.</p>
+                    </div>
+                
+                <div class="valor-card">
+                    <div class="valor-icono">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h3>Valores</h3>
+                    <p>Innovación continua, transparencia radical, compromiso con resultados medibles y pasión por la excelencia tecnológica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Servicios Detallada -->
+    <section id="servicios" class="seccion-servicios-avanzada">
+        <div class="contenedor-principal">
+            <div class="seccion-header">
+                <div class="badge-seccion">
+                    <i data-lucide="cpu"></i>
+                    <span>Nuestras Soluciones</span>
+                </div>
+                <h2 class="titulo-seccion-moderna">
+                    Tecnología que <span class="texto-gradient">Impulsa Resultados</span>
+                </h2>
+                <p class="subtitulo-seccion">
+                    Tres pilares tecnológicos que transforman la manera en que tu empresa opera, 
+                    optimiza y crece en el ecosistema digital actual.
+                </p>
+            </div>
+
+            <!-- Servicio 1: Visión por Computadora -->
+            <div class="servicio-detallado">
+                <div class="servicio-visual">
+                    <div class="servicio-ilustracion vision-computadora">
+                        <div class="camara-icon">
+                            <i data-lucide="camera"></i>
+                        </div>
+                        <div class="ondas-deteccion"></div>
+                        <div class="puntos-tracking"></div>
+                    </div>
+                </div>
+                
+                <div class="servicio-contenido">
+                    <div class="servicio-badge">
+                        <i data-lucide="eye"></i>
+                        <span>Visión por Computadora</span>
+                    </div>
+                    
+                    <h3>Inteligencia Visual Avanzada</h3>
+                    <p class="servicio-descripcion">
+                        Transformamos cámaras de videovigilancia convencionales en sistemas inteligentes 
+                        capaces de analizar, detectar y generar insights valiosos en tiempo real.
+                    </p>
+                    
+                    <div class="casos-uso">
+                        <h4>Casos de Uso Específicos:</h4>
+                        <div class="casos-grid">
+                            <div class="caso-item">
+                                <i data-lucide="shopping-cart"></i>
+                                <div>
+                                    <strong>Retail Inteligente</strong>
+                                    <p>Análisis de flujo de clientes, detección de productos, control de inventario automático</p>
+                                </div>
+                            </div>
+                            <div class="caso-item">
+                                <i data-lucide="shield"></i>
+                                <div>
+                                    <strong>Seguridad Avanzada</strong>
+                                    <p>Reconocimiento facial, detección de comportamientos anómalos, alertas inteligentes</p>
+                                </div>
+                            </div>
+                            <div class="caso-item">
+                                <i data-lucide="factory"></i>
+                                <div>
+                                    <strong>Manufactura 4.0</strong>
+                                    <p>Control de calidad automatizado, detección de defectos, optimización de procesos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="beneficios-proyectados">
+                        <div class="beneficio">
+                            <span class="beneficio-numero">75%</span>
+                            <span class="beneficio-texto">Reducción en costos operativos</span>
+                        </div>
+                        <div class="beneficio">
+                            <span class="beneficio-numero">90%</span>
+                            <span class="beneficio-texto">Precisión en detecciones</span>
+                        </div>
+                        <div class="beneficio">
+                            <span class="beneficio-numero">24/7</span>
+                            <span class="beneficio-texto">Monitoreo continuo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicio 2: Software TPV -->
+            <div class="servicio-detallado servicio-inverso">
+                <div class="servicio-contenido">
+                    <div class="servicio-badge">
+                        <i data-lucide="credit-card"></i>
+                        <span>Software TPV</span>
+                    </div>
+                    
+                    <h3>Punto de Venta Inteligente</h3>
+                    <p class="servicio-descripcion">
+                        Soluciones POS personalizables que transforman cada transacción en una oportunidad 
+                        de optimización, análisis y crecimiento para tu negocio.
+                    </p>
+                    
+                    <div class="casos-uso">
+                        <h4>Ventajas por Industria:</h4>
+                        <div class="casos-grid">
+                            <div class="caso-item">
+                                <i data-lucide="coffee"></i>
+                                <div>
+                                    <strong>Restaurantes & Cafeterías</strong>
+                                    <p>Gestión de mesas, comandas digitales, análisis de productos estrella</p>
+                                </div>
+                            </div>
+                            <div class="caso-item">
+                                <i data-lucide="shirt"></i>
+                                <div>
+                                    <strong>Retail & Moda</strong>
+                                    <p>Control de tallas, gestión de temporadas, programa de fidelización</p>
+                                </div>
+                            </div>
+                            <div class="caso-item">
+                                <i data-lucide="stethoscope"></i>
+                                <div>
+                                    <strong>Servicios & Consultoría</strong>
+                                    <p>Facturación por horas, gestión de citas, historial de clientes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="beneficios-proyectados">
+                        <div class="beneficio">
+                            <span class="beneficio-numero">60%</span>
+                            <span class="beneficio-texto">Tiempo de transacción reducido</span>
+                        </div>
+                        <div class="beneficio">
+                            <span class="beneficio-numero">99.9%</span>
+                            <span class="beneficio-texto">Uptime garantizado</span>
+                        </div>
+                        <div class="beneficio">
+                            <span class="beneficio-numero">100%</span>
+                            <span class="beneficio-texto">Personalizable</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="servicio-visual">
+                    <div class="servicio-ilustracion tpv-sistema">
+                        <div class="terminal-pos">
+                            <div class="pantalla-pos">
+                                <div class="linea-producto"></div>
+                                <div class="linea-producto"></div>
+                                <div class="linea-producto"></div>
+                            </div>
+                        </div>
+                        <div class="flujo-datos"></div>
+                        <div class="nube-datos">
+                            <i data-lucide="cloud"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicio 3: Integración de Bases de Datos -->
+            <div class="servicio-detallado">
+                <div class="servicio-visual">
+                    <div class="servicio-ilustracion integracion-bd">
+                        <div class="bd-central">
+                            <i data-lucide="database"></i>
+                        </div>
+                        <div class="conexiones-bd">
+                            <div class="nodo-bd" data-tipo="CRM"></div>
+                            <div class="nodo-bd" data-tipo="ERP"></div>
+                            <div class="nodo-bd" data-tipo="API"></div>
+                            <div class="nodo-bd" data-tipo="WEB"></div>
+                        </div>
+                        <div class="flujos-sincronizacion"></div>
+                    </div>
+                </div>
+                
+                <div class="servicio-contenido">
+                    <div class="servicio-badge">
+                        <i data-lucide="database"></i>
+                        <span>Integración de Bases de Datos</span>
+                    </div>
+                    
+                    <h3>Ecosistema Digital Unificado</h3>
+                    <p class="servicio-descripcion">
+                        Conectamos, sincronizamos y optimizamos todas las fuentes de información 
+                        de tu organización en un ecosistema cohesivo y eficiente.
+                    </p>
+                    
+                    <div class="casos-uso">
+                        <h4>Ejemplos Técnicos:</h4>
+                        <div class="casos-grid">
+                            <div class="caso-item">
+                                <i data-lucide="workflow"></i>
+                                <div>
+                                    <strong>CRM + ERP + E-commerce</strong>
+                                    <p>Sincronización en tiempo real de inventarios, clientes y ventas</p>
+                                </div>
+                            </div>
+                            <div class="caso-item">
+                                <i data-lucide="zap"></i>
+                                <div>
+                                    <strong>APIs Legacy + Modernización</strong>
+                                    <p>Integración de sistemas antiguos con plataformas modernas</p>
+                                </div>
+                            </div>
+                            <div class="caso-item">
+                                <i data-lucide="bar-chart"></i>
+                                <div>
+                                    <strong>Business Intelligence</strong>
+                                    <p>Dashboards unificados con datos de múltiples fuentes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="beneficios-proyectados">
+                        <div class="beneficio">
+                            <span class="beneficio-numero">80%</span>
+                            <span class="beneficio-texto">Reducción en errores</span>
+                        </div>
+                        <div class="beneficio">
+                            <span class="beneficio-numero">70%</span>
+                            <span class="beneficio-texto">Tiempo de proceso optimizado</span>
+                        </div>
+                        <div class="beneficio">
+                            <span class="beneficio-numero">∞</span>
+                            <span class="beneficio-texto">Escalabilidad garantizada</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección de servicios -->
-    <section id="servicios" class="seccion-servicios">
+    <!-- Sección Stack Tecnológico -->
+    <section id="tecnologia" class="seccion-tecnologia">
         <div class="contenedor-principal">
-            <h2 class="titulo-seccion">Nuestros Servicios</h2>
-            <div class="grid-servicios">
-                <div class="tarjeta-servicio">
-                    <h3 class="titulo-servicio">Consultoría</h3>
-                    <p class="descripcion-servicio">
-                        Asesoramiento profesional personalizado para impulsar tu negocio.
-                    </p>
+            <div class="seccion-header">
+                <div class="badge-seccion">
+                    <i data-lucide="code"></i>
+                    <span>Stack Tecnológico</span>
                 </div>
-                <div class="tarjeta-servicio">
-                    <h3 class="titulo-servicio">Desarrollo</h3>
-                    <p class="descripcion-servicio">
-                        Soluciones tecnológicas innovadoras adaptadas a tus necesidades.
-                    </p>
+                <h2 class="titulo-seccion-moderna">
+                    Construido con <span class="texto-gradient">Tecnología de Vanguardia</span>
+                </h2>
+                <p class="subtitulo-seccion">
+                    Utilizamos las herramientas más avanzadas del ecosistema tecnológico actual 
+                    para garantizar soluciones robustas, escalables y futuro-compatibles.
+                </p>
+            </div>
+
+            <div class="tech-stack-grid">
+                <div class="tech-categoria">
+                    <h3>Inteligencia Artificial</h3>
+                    <div class="tech-items">
+                        <div class="tech-item" data-tech="python">
+                            <div class="tech-logo">🐍</div>
+                            <span>Python</span>
+                            <div class="tech-tooltip">Lenguaje principal para desarrollo de IA</div>
+                        </div>
+                        <div class="tech-item" data-tech="tensorflow">
+                            <div class="tech-logo">🧠</div>
+                            <span>TensorFlow</span>
+                            <div class="tech-tooltip">Framework de machine learning</div>
+                        </div>
+                        <div class="tech-item" data-tech="pytorch">
+                            <div class="tech-logo">🔥</div>
+                            <span>PyTorch</span>
+                            <div class="tech-tooltip">Deep learning y redes neuronales</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tarjeta-servicio">
-                    <h3 class="titulo-servicio">Soporte</h3>
-                    <p class="descripcion-servicio">
-                        Atención al cliente 24/7 para garantizar tu tranquilidad.
-                    </p>
+
+                <div class="tech-categoria">
+                    <h3>Visión por Computadora</h3>
+                    <div class="tech-items">
+                        <div class="tech-item" data-tech="opencv">
+                            <div class="tech-logo">👁️</div>
+                            <span>OpenCV</span>
+                            <div class="tech-tooltip">Procesamiento de imágenes avanzado</div>
+                        </div>
+                        <div class="tech-item" data-tech="yolo">
+                            <div class="tech-logo">🎯</div>
+                            <span>YOLO</span>
+                            <div class="tech-tooltip">Detección de objetos en tiempo real</div>
+                        </div>
+                        <div class="tech-item" data-tech="mediapipe">
+                            <div class="tech-logo">🖐️</div>
+                            <span>MediaPipe</span>
+                            <div class="tech-tooltip">Análisis de gestos y poses</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-categoria">
+                    <h3>Desarrollo Web</h3>
+                    <div class="tech-items">
+                        <div class="tech-item" data-tech="fastapi">
+                            <div class="tech-logo">⚡</div>
+                            <span>FastAPI</span>
+                            <div class="tech-tooltip">APIs ultra-rápidas y modernas</div>
+                        </div>
+                        <div class="tech-item" data-tech="react">
+                            <div class="tech-logo">⚛️</div>
+                            <span>React</span>
+                            <div class="tech-tooltip">Interfaces de usuario interactivas</div>
+                        </div>
+                        <div class="tech-item" data-tech="docker">
+                            <div class="tech-logo">🐳</div>
+                            <span>Docker</span>
+                            <div class="tech-tooltip">Containerización y despliegue</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-categoria">
+                    <h3>Bases de Datos</h3>
+                    <div class="tech-items">
+                        <div class="tech-item" data-tech="postgresql">
+                            <div class="tech-logo">🐘</div>
+                            <span>PostgreSQL</span>
+                            <div class="tech-tooltip">Base de datos relacional avanzada</div>
+                        </div>
+                        <div class="tech-item" data-tech="mongodb">
+                            <div class="tech-logo">🍃</div>
+                            <span>MongoDB</span>
+                            <div class="tech-tooltip">Base de datos NoSQL flexible</div>
+                        </div>
+                        <div class="tech-item" data-tech="redis">
+                            <div class="tech-logo">📦</div>
+                            <span>Redis</span>
+                            <div class="tech-tooltip">Cache y almacenamiento en memoria</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pie de página -->
-    <footer class="pie-pagina">
+    <!-- Sección Por Qué VENTTION -->
+    <section id="ventajas" class="seccion-ventajas">
         <div class="contenedor-principal">
-            <div class="informacion-contacto">
-                <h3 class="titulo-contacto">Información de Contacto</h3>
-                <p class="dato-contacto">Email: info@venttiun.com</p>
-                <p class="dato-contacto">Teléfono: +34 123 456 789</p>
-                <p class="dato-contacto">Dirección: Calle Principal 123, Ciudad</p>
+            <div class="seccion-header">
+                <div class="badge-seccion">
+                    <i data-lucide="star"></i>
+                    <span>Ventajas Competitivas</span>
+                </div>
+                <h2 class="titulo-seccion-moderna">
+                    ¿Por Qué Elegir <span class="texto-gradient">VENTTION</span>?
+                </h2>
+                <p class="subtitulo-seccion">
+                    Cuatro pilares fundamentales que nos distinguen en el mercado tecnológico 
+                    y garantizan el éxito de tu transformación digital.
+                </p>
             </div>
-            <div class="derechos-autor">
-                <p>&copy; 2024 Venttiun. Todos los derechos reservados.</p>
+
+            <div class="ventajas-grid">
+                <div class="ventaja-card">
+                    <div class="ventaja-numero">01</div>
+                    <div class="ventaja-icono">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3>Rapidez de Implementación</h3>
+                    <p>Metodología ágil que permite ver resultados tangibles en las primeras 24 horas. Nuestro enfoque de desarrollo rápido minimiza el tiempo de inactividad y maximiza el retorno de inversión desde el primer día.</p>
+                    <div class="ventaja-detalle">
+                        <strong>Proceso Express:</strong> Análisis → Prototipo → Implementación → Optimización
+                    </div>
+                </div>
+
+                <div class="ventaja-card">
+                    <div class="ventaja-numero">02</div>
+                    <div class="ventaja-icono">
+                        <i data-lucide="settings"></i>
+                    </div>
+                    <h3>Personalización Total</h3>
+                    <p>Cada solución se adapta 100% a tus necesidades específicas. No creemos en soluciones genéricas; desarrollamos tecnología que se moldea perfectamente a tu flujo de trabajo y objetivos empresariales.</p>
+                    <div class="ventaja-detalle">
+                        <strong>Adaptabilidad:</strong> Configurable · Escalable · Modular · Evolutivo
+                    </div>
+                </div>
+
+                <div class="ventaja-card">
+                    <div class="ventaja-numero">03</div>
+                    <div class="ventaja-icono">
+                        <i data-lucide="headphones"></i>
+                    </div>
+                    <h3>Soporte Técnico 24/7</h3>
+                    <p>Equipo especializado disponible las 24 horas para garantizar el funcionamiento óptimo de tus sistemas. Monitoreo proactivo, mantenimiento preventivo y resolución inmediata de incidencias.</p>
+                    <div class="ventaja-detalle">
+                        <strong>Garantía:</strong> 99.9% Uptime · Respuesta < 15 min · Expertos dedicados
+                    </div>
+                </div>
+
+                <div class="ventaja-card">
+                    <div class="ventaja-numero">04</div>
+                    <div class="ventaja-icono">
+                        <i data-lucide="lightbulb"></i>
+                    </div>
+                    <h3>Innovación Tecnológica</h3>
+                    <p>Siempre a la vanguardia de las últimas tendencias tecnológicas. Implementamos las mejores prácticas de la industria y mantenemos tus sistemas actualizados con las tecnologías más avanzadas.</p>
+                    <div class="ventaja-detalle">
+                        <strong>Futuro-Ready:</strong> IA · Machine Learning · Cloud Native · APIs Modernas
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto Mejorada -->
+    <section id="contacto" class="seccion-contacto-futurista">
+        <div class="contenedor-principal">
+            <div class="seccion-header">
+                <div class="badge-seccion">
+                    <i data-lucide="message-circle"></i>
+                    <span>Comenzar Ahora</span>
+                </div>
+                <h2 class="titulo-seccion-moderna">
+                    ¿Listo para <span class="texto-gradient">Transformar tu Negocio</span>?
+                </h2>
+                <p class="subtitulo-seccion">
+                    Ponte en contacto con nosotros y descubre cómo VENTTION puede 
+                    revolucionar tu empresa con tecnología de vanguardia.
+                </p>
+            </div>
+
+            <div class="contacto-grid">
+                <div class="contacto-info">
+                    <div class="info-card">
+                        <div class="info-icono">
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <h3>Email Directo</h3>
+                        <p>info@venttion.com</p>
+                        <span>Respuesta en menos de 2 horas</span>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icono">
+                            <i data-lucide="phone"></i>
+                        </div>
+                        <h3>Teléfono</h3>
+                        <p>+34 900 123 456</p>
+                        <span>Lunes a Viernes: 9:00 - 19:00</span>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icono">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                        <h3>Ubicación</h3>
+                        <p>Madrid, España</p>
+                        <span>Citas virtuales disponibles</span>
+                    </div>
+                </div>
+
+                <div class="formulario-contacto-moderno">
+                    <form id="form-contacto-venttion" class="form-futurista">
+                        <div class="form-grupo">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                            <div class="input-underline"></div>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="email">Email Empresarial</label>
+                            <input type="email" id="email" name="email" required>
+                            <div class="input-underline"></div>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="empresa">Empresa</label>
+                            <input type="text" id="empresa" name="empresa" required>
+                            <div class="input-underline"></div>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="servicio">Servicio de Interés</label>
+                            <select id="servicio" name="servicio" required>
+                                <option value="">Seleccionar servicio</option>
+                                <option value="vision">Visión por Computadora</option>
+                                <option value="tpv">Software TPV</option>
+                                <option value="integracion">Integración de BD</option>
+                                <option value="consultoria">Consultoría General</option>
+                            </select>
+                            <div class="input-underline"></div>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="mensaje">Cuéntanos tu proyecto</label>
+                            <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Describe tu desafío tecnológico y cómo podemos ayudarte..."></textarea>
+                            <div class="input-underline"></div>
+                        </div>
+                        
+                        <button type="submit" class="boton-envio-futurista">
+                            <span>Solicitar Consulta Gratuita</span>
+                            <div class="boton-loading">
+                                <div class="spinner"></div>
+                            </div>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Futurista -->
+    <footer class="footer-futurista">
+        <div class="contenedor-principal">
+            <div class="footer-contenido">
+                <div class="footer-logo">
+                    <div class="logo-venttion">
+                        <span class="logo-texto">VENTTION</span>
+                        <div class="logo-underline"></div>
+                    </div>
+                    <p>Transformando el futuro empresarial con innovación tecnológica.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-seccion">
+                        <h4>Servicios</h4>
+                        <a href="#servicios">Visión por Computadora</a>
+                        <a href="#servicios">Software TPV</a>
+                        <a href="#servicios">Integración BD</a>
+                    </div>
+                    
+                    <div class="footer-seccion">
+                        <h4>Empresa</h4>
+                        <a href="#nosotros">Sobre Nosotros</a>
+                        <a href="#tecnologia">Tecnología</a>
+                        <a href="#ventajas">Ventajas</a>
+                    </div>
+                    
+                    <div class="footer-seccion">
+                        <h4>Contacto</h4>
+                        <a href="mailto:info@venttion.com">info@venttion.com</a>
+                        <a href="tel:+34900123456">+34 900 123 456</a>
+                        <a href="#contacto">Solicitar Demo</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 VENTTION. Todos los derechos reservados.</p>
+                <div class="footer-tech">
+                    <span>Powered by Innovation</span>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="js/funciones-principales.js"></script>
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <div class="chat-button" id="chat-button">
+            <i data-lucide="message-circle"></i>
+            <div class="chat-pulse"></div>
+        </div>
+        
+        <div class="chat-panel" id="chat-panel">
+            <div class="chat-header">
+                <h4>💬 Chat con VENTTION</h4>
+                <button class="chat-close" id="chat-close">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            
+            <div class="chat-body">
+                <div class="chat-mensaje bot">
+                    <div class="mensaje-avatar">🤖</div>
+                    <div class="mensaje-contenido">
+                        <p>¡Hola! Soy el asistente virtual de VENTTION. ¿En qué puedo ayudarte hoy?</p>
+                        <div class="opciones-rapidas">
+                            <button class="opcion-rapida" data-opcion="demo">Solicitar Demo</button>
+                            <button class="opcion-rapida" data-opcion="precios">Información de Precios</button>
+                            <button class="opcion-rapida" data-opcion="contacto">Hablar con Experto</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" placeholder="Escribe tu mensaje..." id="chat-input-field">
+                <button id="chat-send">
+                    <i data-lucide="send"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts futuristas -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/animaciones-avanzadas.js"></script>
+    <script src="js/chat-widget.js"></script>
+    <script src="js/formulario-contacto.js"></script>
+    <script src="js/hero-3d.js"></script>
 </body>
 </html> 
