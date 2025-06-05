@@ -19,7 +19,16 @@
         <nav class="navegacion-moderna">
             <div class="contenedor-logo-moderno">
                 <div class="logo-venttion">
-                    <span class="logo-texto">VENTTION</span>
+                    <span class="logo-texto">
+                        <span class="letra-logo" data-letter="V">V</span>
+                        <span class="letra-logo" data-letter="E">E</span>
+                        <span class="letra-logo" data-letter="N">N</span>
+                        <span class="letra-logo" data-letter="T">T</span>
+                        <span class="letra-logo" data-letter="T">T</span>
+                        <span class="letra-logo" data-letter="I">I</span>
+                        <span class="letra-logo" data-letter="O">O</span>
+                        <span class="letra-logo" data-letter="N">N</span>
+                    </span>
                     <div class="logo-underline"></div>
                 </div>
             </div>
@@ -41,7 +50,7 @@
 
     <!-- Sección Hero Ultra-Moderna -->
     <section id="inicio" class="seccion-hero-futurista">
-        <div class="hero-content">
+        <div class="hero-content-centrado">
             <div class="hero-badge">
                 <span class="badge-text">🚀 Start Up Tecnológica</span>
                 <div class="badge-glow"></div>
@@ -61,16 +70,16 @@
             
             <div class="hero-estadisticas">
                 <div class="estadistica-item">
-                    <span class="numero-animado" data-valor="100">0</span>
+                    <span class="numero-animado" data-valor="100"></span>
                     <span class="estadistica-texto">% Personalizable</span>
                 </div>
                 <div class="estadistica-item">
-                    <span class="numero-animado" data-valor="24">0</span>
-                    <span class="estadistica-texto">hrs Implementación</span>
+                    <span class="numero-animado" data-valor="96"></span>
+                    <span class="estadistica-texto">% Precisión IA</span>
                 </div>
                 <div class="estadistica-item">
-                    <span class="numero-animado" data-valor="99">0</span>
-                    <span class="estadistica-texto">% Uptime Garantizado</span>
+                    <span class="numero-animado" data-valor="24"></span>
+                    <span class="estadistica-texto">7/ Real Time</span>
                 </div>
             </div>
             
@@ -84,11 +93,6 @@
                     <span>Conocer Más</span>
                 </button>
             </div>
-        </div>
-        
-        <!-- Visualización Futurista -->
-        <div class="hero-visual">
-            <div id="hero-3d-container" class="hero-3d-canvas"></div>
         </div>
     </section>
 
@@ -104,7 +108,7 @@
                     Pioneros en <span class="texto-gradient">Innovación Digital</span>
                 </h2>
                 <p class="subtitulo-seccion">
-                    VENTTION nace con la misión de revolucionar la manera en que las empresas 
+                    <span class="texto-destacado-empresa">VENTTION</span> nace con la misión de revolucionar la manera en que las empresas 
                     interactúan con la tecnología, creando soluciones que no solo resuelven 
                     problemas actuales, sino que anticipan las necesidades del futuro.
                 </p>
@@ -127,7 +131,7 @@
                     </div>
                     <div class="timeline-contenido">
                         <h3>Desarrollo Ágil</h3>
-                        <p>Metodología de implementación rápida que permite resultados visibles en las primeras 24 horas.</p>
+                        <p>Metodología de implementación rápida que permite resultados visibles en poco tiempo.</p>
                     </div>
                 </div>
                 
@@ -421,89 +425,115 @@
                 </p>
             </div>
 
-            <div class="tech-stack-grid">
-                <div class="tech-categoria">
-                    <h3>Inteligencia Artificial</h3>
-                    <div class="tech-items">
-                        <div class="tech-item" data-tech="python">
-                            <div class="tech-logo">🐍</div>
-                            <span>Python</span>
-                            <div class="tech-tooltip">Lenguaje principal para desarrollo de IA</div>
+            <div class="tech-carousel-container">
+                <div class="tech-carousel">
+                    <div class="tech-slide">
+                        <div class="tech-categoria">
+                            <h3>Inteligencia Artificial</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-tech="python">
+                                    <div class="tech-logo">🐍</div>
+                                    <span>Python</span>
+                                    <div class="tech-tooltip">Lenguaje principal para desarrollo de IA</div>
+                                </div>
+                                <div class="tech-item" data-tech="tensorflow">
+                                    <div class="tech-logo">🧠</div>
+                                    <span>TensorFlow</span>
+                                    <div class="tech-tooltip">Framework de machine learning</div>
+                                </div>
+                                <div class="tech-item" data-tech="pytorch">
+                                    <div class="tech-logo">🔥</div>
+                                    <span>PyTorch</span>
+                                    <div class="tech-tooltip">Deep learning y redes neuronales</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tech-item" data-tech="tensorflow">
-                            <div class="tech-logo">🧠</div>
-                            <span>TensorFlow</span>
-                            <div class="tech-tooltip">Framework de machine learning</div>
+                    </div>
+
+                    <div class="tech-slide">
+                        <div class="tech-categoria">
+                            <h3>Visión por Computadora</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-tech="opencv">
+                                    <div class="tech-logo">👁️</div>
+                                    <span>OpenCV</span>
+                                    <div class="tech-tooltip">Procesamiento de imágenes avanzado</div>
+                                </div>
+                                <div class="tech-item" data-tech="yolo">
+                                    <div class="tech-logo">🎯</div>
+                                    <span>YOLO</span>
+                                    <div class="tech-tooltip">Detección de objetos en tiempo real</div>
+                                </div>
+                                <div class="tech-item" data-tech="mediapipe">
+                                    <div class="tech-logo">🖐️</div>
+                                    <span>MediaPipe</span>
+                                    <div class="tech-tooltip">Análisis de gestos y poses</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tech-item" data-tech="pytorch">
-                            <div class="tech-logo">🔥</div>
-                            <span>PyTorch</span>
-                            <div class="tech-tooltip">Deep learning y redes neuronales</div>
+                    </div>
+
+                    <div class="tech-slide">
+                        <div class="tech-categoria">
+                            <h3>Desarrollo Web</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-tech="fastapi">
+                                    <div class="tech-logo">⚡</div>
+                                    <span>FastAPI</span>
+                                    <div class="tech-tooltip">APIs ultra-rápidas y modernas</div>
+                                </div>
+                                <div class="tech-item" data-tech="react">
+                                    <div class="tech-logo">⚛️</div>
+                                    <span>React</span>
+                                    <div class="tech-tooltip">Interfaces de usuario interactivas</div>
+                                </div>
+                                <div class="tech-item" data-tech="docker">
+                                    <div class="tech-logo">🐳</div>
+                                    <span>Docker</span>
+                                    <div class="tech-tooltip">Containerización y despliegue</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-slide">
+                        <div class="tech-categoria">
+                            <h3>Bases de Datos</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-tech="postgresql">
+                                    <div class="tech-logo">🐘</div>
+                                    <span>PostgreSQL</span>
+                                    <div class="tech-tooltip">Base de datos relacional avanzada</div>
+                                </div>
+                                <div class="tech-item" data-tech="mongodb">
+                                    <div class="tech-logo">🍃</div>
+                                    <span>MongoDB</span>
+                                    <div class="tech-tooltip">Base de datos NoSQL flexible</div>
+                                </div>
+                                <div class="tech-item" data-tech="redis">
+                                    <div class="tech-logo">📦</div>
+                                    <span>Redis</span>
+                                    <div class="tech-tooltip">Cache y almacenamiento en memoria</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="tech-categoria">
-                    <h3>Visión por Computadora</h3>
-                    <div class="tech-items">
-                        <div class="tech-item" data-tech="opencv">
-                            <div class="tech-logo">👁️</div>
-                            <span>OpenCV</span>
-                            <div class="tech-tooltip">Procesamiento de imágenes avanzado</div>
-                        </div>
-                        <div class="tech-item" data-tech="yolo">
-                            <div class="tech-logo">🎯</div>
-                            <span>YOLO</span>
-                            <div class="tech-tooltip">Detección de objetos en tiempo real</div>
-                        </div>
-                        <div class="tech-item" data-tech="mediapipe">
-                            <div class="tech-logo">🖐️</div>
-                            <span>MediaPipe</span>
-                            <div class="tech-tooltip">Análisis de gestos y poses</div>
-                        </div>
+                <!-- Controles del Carrusel -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn" id="tech-prev">
+                        <i data-lucide="chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
                     </div>
-                </div>
-
-                <div class="tech-categoria">
-                    <h3>Desarrollo Web</h3>
-                    <div class="tech-items">
-                        <div class="tech-item" data-tech="fastapi">
-                            <div class="tech-logo">⚡</div>
-                            <span>FastAPI</span>
-                            <div class="tech-tooltip">APIs ultra-rápidas y modernas</div>
-                        </div>
-                        <div class="tech-item" data-tech="react">
-                            <div class="tech-logo">⚛️</div>
-                            <span>React</span>
-                            <div class="tech-tooltip">Interfaces de usuario interactivas</div>
-                        </div>
-                        <div class="tech-item" data-tech="docker">
-                            <div class="tech-logo">🐳</div>
-                            <span>Docker</span>
-                            <div class="tech-tooltip">Containerización y despliegue</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-categoria">
-                    <h3>Bases de Datos</h3>
-                    <div class="tech-items">
-                        <div class="tech-item" data-tech="postgresql">
-                            <div class="tech-logo">🐘</div>
-                            <span>PostgreSQL</span>
-                            <div class="tech-tooltip">Base de datos relacional avanzada</div>
-                        </div>
-                        <div class="tech-item" data-tech="mongodb">
-                            <div class="tech-logo">🍃</div>
-                            <span>MongoDB</span>
-                            <div class="tech-tooltip">Base de datos NoSQL flexible</div>
-                        </div>
-                        <div class="tech-item" data-tech="redis">
-                            <div class="tech-logo">📦</div>
-                            <span>Redis</span>
-                            <div class="tech-tooltip">Cache y almacenamiento en memoria</div>
-                        </div>
-                    </div>
+                    <button class="carousel-btn next-btn" id="tech-next">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -761,10 +791,8 @@
 
     <!-- Scripts futuristas -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="js/animaciones-avanzadas.js"></script>
     <script src="js/chat-widget.js"></script>
     <script src="js/formulario-contacto.js"></script>
-    <script src="js/hero-3d.js"></script>
 </body>
 </html> 

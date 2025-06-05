@@ -29,8 +29,7 @@ function inicializarFormularioContactoVenttion() {
     // Configurar efectos visuales
     configurarEfectosVisuales();
     
-    // Configurar botones hero
-    configurarBotonesHero();
+    // NOTA: Los botones del hero ahora se configuran en animaciones-avanzadas.js
 }
 
 /**
@@ -576,47 +575,8 @@ function configurarEfectosVisuales() {
     });
 }
 
-/**
- * Configura los botones del hero para abrir formulario
- */
-function configurarBotonesHero() {
-    const btnDemo = document.getElementById('btn-demo');
-    const btnConocer = document.getElementById('btn-conocer');
-    
-    if (btnDemo) {
-        btnDemo.addEventListener('click', function() {
-            // Scroll suave hasta el formulario de contacto
-            const seccionContacto = document.getElementById('contacto');
-            if (seccionContacto) {
-                seccionContacto.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                // Pre-llenar el campo servicio con "demo"
-                setTimeout(() => {
-                    const servicioSelect = document.getElementById('servicio');
-                    if (servicioSelect) {
-                        servicioSelect.value = 'consultoria';
-                        servicioSelect.focus();
-                    }
-                }, 1000);
-            }
-        });
-    }
-    
-    if (btnConocer) {
-        btnConocer.addEventListener('click', function() {
-            const seccionNosotros = document.getElementById('nosotros');
-            if (seccionNosotros) {
-                seccionNosotros.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    }
-}
+// NOTA: La configuración de botones del hero se maneja ahora en animaciones-avanzadas.js
+// para usar scroll manual que funciona correctamente en todos los navegadores
 
 // Agregar estilos CSS para las animaciones
 const style = document.createElement('style');

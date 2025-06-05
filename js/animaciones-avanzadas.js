@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     inicializarIconosLucide();
     configurarAnimacionesVisibilidad();
     inicializarCursorLuz();
+    animarEntradaNavbar();
 });
 
 /**
@@ -25,9 +26,6 @@ function inicializarAnimaciones() {
     
     // Efectos hover en cards
     configurarEfectosHover();
-    
-    // Scroll suave para navegación
-    configurarScrollSuave();
 }
 
 /**
@@ -54,10 +52,10 @@ function configurarCanvasParticulas() {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.velocidadX = (Math.random() - 0.5) * 0.5;
-            this.velocidadY = (Math.random() - 0.5) * 0.5;
-            this.tamano = Math.random() * 2 + 1;
-            this.opacidad = Math.random() * 0.5 + 0.2;
+            this.velocidadX = (Math.random() - 0.5) * 0.3;
+            this.velocidadY = (Math.random() - 0.5) * 0.3;
+            this.tamano = Math.random() * 1 + 1;
+            this.opacidad = Math.random() * 0.1 + 0.1;
             this.color = Math.random() > 0.5 ? '#00d4ff' : '#8b5cf6';
         }
         
@@ -75,6 +73,12 @@ function configurarCanvasParticulas() {
             ctx.arc(this.x, this.y, this.tamano, 0, Math.PI * 2);
             ctx.fillStyle = this.color + Math.floor(this.opacidad * 255).toString(16).padStart(2, '0');
             ctx.fill();
+            
+            // Añadir glow effect para más intensidad
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color;
+            ctx.fill();
+            ctx.shadowBlur = 0;
         }
     }
     
@@ -92,11 +96,12 @@ function configurarCanvasParticulas() {
                     Math.pow(particulas[i].y - particulas[j].y, 2)
                 );
                 
-                if (distancia < 150) {
+                if (distancia < 180) {
                     ctx.beginPath();
                     ctx.moveTo(particulas[i].x, particulas[i].y);
                     ctx.lineTo(particulas[j].x, particulas[j].y);
-                    ctx.strokeStyle = `rgba(0, 212, 255, ${0.2 * (1 - distancia / 150)})`;
+                    ctx.strokeStyle = `rgba(0, 212, 255, ${0.4 * (1 - distancia / 180)})`;
+                    ctx.lineWidth = 1.5;
                     ctx.stroke();
                 }
             }
@@ -310,31 +315,6 @@ function configurarEfectosHover() {
 }
 
 /**
- * Configura scroll suave para la navegación
- */
-function configurarScrollSuave() {
-    const enlaces = document.querySelectorAll('a[href^="#"]');
-    
-    enlaces.forEach(enlace => {
-        enlace.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 100;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
-/**
  * Inicializa los iconos de Lucide
  */
 function inicializarIconosLucide() {
@@ -427,33 +407,12 @@ function inicializarCursorLuz() {
     cursorLuz.className = 'cursor-light';
     document.body.appendChild(cursorLuz);
     
-    // Variables para suavizar el movimiento
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    
-    // Seguir el mouse
+    // Seguir el mouse INSTANTÁNEAMENTE
     document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+        // Posicionar la luz directamente sin interpolación (centrada en el cursor)
+        cursorLuz.style.left = (e.clientX - 24) + 'px';
+        cursorLuz.style.top = (e.clientY - 23) + 'px';
     });
-    
-    // Animación suave del cursor
-    function animarCursorLuz() {
-        // Interpolación suave para el movimiento
-        currentX += (mouseX - currentX) * 0.1;
-        currentY += (mouseY - currentY) * 0.1;
-        
-        // Posicionar la luz (centrada en el cursor)
-        cursorLuz.style.left = (currentX - 24) + 'px';
-        cursorLuz.style.top = (currentY - 23) + 'px';
-        
-        requestAnimationFrame(animarCursorLuz);
-    }
-    
-    // Iniciar animación
-    animarCursorLuz();
     
     // Efecto de click
     document.addEventListener('click', function() {
@@ -487,5 +446,247 @@ function inicializarCursorLuz() {
             cursorLuz.style.transform = 'scale(1)';
             cursorLuz.style.background = 'radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 70%)';
         }
+    });
+}
+
+// ============================================
+// SCROLL SUAVE PARA NAVEGACIÓN - VERSIÓN SIMPLE
+// ============================================
+
+// Función que maneja el click en navegación
+function manejarClickNavegacion(evento) {
+    evento.preventDefault();
+    evento.stopPropagation();
+    
+    const destino = this.getAttribute('href');
+    navegarHaciaSeccion(destino);
+}
+
+// Función específica y directa para scroll suave
+function activarScrollSuave() {
+    // 1. Configurar enlaces de navegación
+    const enlacesNavegacion = document.querySelectorAll('.enlace-nav-moderno');
+    enlacesNavegacion.forEach((enlace) => {
+        enlace.removeEventListener('click', manejarClickNavegacion);
+        enlace.addEventListener('click', manejarClickNavegacion);
+    });
+    
+    // 2. Configurar todos los enlaces con href="#seccion" (footer y otros)
+    const enlacesInternos = document.querySelectorAll('a[href^="#"]:not(.enlace-nav-moderno)');
+    enlacesInternos.forEach((enlace) => {
+        // Solo si el href apunta a una sección que existe
+        const destino = enlace.getAttribute('href');
+        if (destino && destino.length > 1 && document.querySelector(destino)) {
+            enlace.removeEventListener('click', manejarClickNavegacion);
+            enlace.addEventListener('click', manejarClickNavegacion);
+        }
+    });
+    
+    // 3. Configurar botones específicos del hero
+    configurarBotonesHero();
+}
+
+// Configurar botones específicos del hero que no tienen href
+function configurarBotonesHero() {
+    // Botón "Solicitar Demo" → Ir a #contacto
+    const btnDemo = document.getElementById('btn-demo');
+    if (btnDemo) {
+        btnDemo.removeEventListener('click', irAContacto);
+        btnDemo.addEventListener('click', irAContacto);
+    }
+    
+    // Botón "Conocer Más" → Ir a #nosotros
+    const btnConocer = document.getElementById('btn-conocer');
+    if (btnConocer) {
+        btnConocer.removeEventListener('click', irANosotros);
+        btnConocer.addEventListener('click', irANosotros);
+    }
+}
+
+// Funciones específicas para botones del hero
+function irAContacto(evento) {
+    evento.preventDefault();
+    navegarHaciaSeccion('#contacto');
+    
+    // Pre-llenar el campo servicio después del scroll
+    setTimeout(() => {
+        const servicioSelect = document.getElementById('servicio');
+        if (servicioSelect) {
+            servicioSelect.value = 'consultoria';
+            servicioSelect.focus();
+        }
+    }, 900); // Esperar a que termine la animación de scroll
+}
+
+function irANosotros(evento) {
+    evento.preventDefault();
+    navegarHaciaSeccion('#nosotros');
+}
+
+// Función unificada para navegar a cualquier sección
+function navegarHaciaSeccion(destino) {
+    const seccion = document.querySelector(destino);
+    if (seccion) {
+        const posicionActual = window.scrollY;
+        const posicionDestino = seccion.getBoundingClientRect().top + window.scrollY - 100;
+        animarScrollHacia(posicionActual, posicionDestino, 800);
+    }
+}
+
+// Función para animar el scroll manualmente
+function animarScrollHacia(desde, hacia, duracion) {
+    const distancia = hacia - desde;
+    const tiempoInicio = performance.now();
+    
+    function step(tiempoActual) {
+        const tiempoTranscurrido = tiempoActual - tiempoInicio;
+        const progreso = Math.min(tiempoTranscurrido / duracion, 1);
+        
+        // Función de easing suave (ease-out)
+        const progressSuave = 1 - Math.pow(1 - progreso, 3);
+        
+        const posicionActual = desde + (distancia * progressSuave);
+        window.scrollTo(0, posicionActual);
+        
+        if (progreso < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+    
+    requestAnimationFrame(step);
+}
+
+// Inicializar cuando esté todo listo
+document.addEventListener('DOMContentLoaded', function() {
+    // Pequeña pausa para asegurar que todo esté renderizado
+    setTimeout(() => {
+        activarScrollSuave();
+    }, 200);
+});
+
+// Respaldo adicional cuando la página esté completamente cargada
+window.addEventListener('load', function() {
+    activarScrollSuave();
+    inicializarCarruselTecnologico();
+});
+
+// ============================================
+// CARRUSEL TECNOLÓGICO
+// ============================================
+
+function inicializarCarruselTecnologico() {
+    const carousel = document.querySelector('.tech-carousel');
+    const slides = document.querySelectorAll('.tech-slide');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const prevBtn = document.getElementById('tech-prev');
+    const nextBtn = document.getElementById('tech-next');
+    
+    if (!carousel || slides.length === 0) return;
+    
+    let currentSlide = 0;
+    
+    function showSlide(index) {
+        // Mover el carrusel horizontal
+        const translateX = -index * 25; // Cada slide ocupa 25%
+        carousel.style.transform = `translateX(${translateX}%)`;
+        
+        // Actualizar dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+        
+        currentSlide = index;
+    }
+    
+    function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        showSlide(next);
+    }
+    
+    function prevSlide() {
+        const prev = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(prev);
+    }
+    
+    // Event listeners para botones
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+    }
+    
+    // Event listeners para dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+    
+    // Auto-slide cada 5 segundos
+    setInterval(() => {
+        nextSlide();
+    }, 5000);
+    
+    // Inicializar primera slide
+    showSlide(0);
+}
+
+/**
+ * Anima la entrada del navbar al cargar la página
+ */
+function animarEntradaNavbar() {
+    const navbar = document.querySelector('.encabezado-futurista');
+    
+    if (!navbar) return;
+    
+    // Esperar un momento antes de animar para que se vea el efecto
+    setTimeout(() => {
+        navbar.classList.add('navbar-loaded');
+        
+        // Iniciar animación de letras después de que el navbar termine de desplegarse
+        setTimeout(() => {
+            animarLetrasLogo();
+        }, 400); // Esperar 400ms después de que el navbar empiece a desplegarse
+        
+    }, 700); // Cambiado de 300ms a 800ms
+}
+
+/**
+ * Anima las letras del logo VENTTION secuencialmente
+ */
+function animarLetrasLogo() {
+    const letras = document.querySelectorAll('.letra-logo');
+    
+    if (letras.length === 0) return;
+    
+    console.log('Animando letras del logo:', letras.length); // Debug
+    
+    // Animar cada letra con un retraso secuencial
+    letras.forEach((letra, index) => {
+        setTimeout(() => {
+            console.log(`Animando letra ${index}:`, letra.textContent); // Debug
+            
+            // Agregar clase de animación
+            letra.classList.add('letra-animada');
+            
+            // Forzar visibilidad con JavaScript como respaldo
+            letra.style.opacity = '1';
+            letra.style.transform = 'translateY(0) rotateY(0deg)';
+            
+            // Agregar pequeño efecto de brillo temporal
+            setTimeout(() => {
+                letra.style.textShadow = '0 0 15px rgba(0, 212, 255, 0.8)';
+                setTimeout(() => {
+                    letra.style.textShadow = '';
+                }, 300);
+            }, 200);
+            
+        }, index * 100); // 100ms entre cada letra
     });
 } 
