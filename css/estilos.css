@@ -80,6 +80,7 @@ html {
     font-size: 16px;
     scroll-behavior: smooth;
     scroll-padding-top: 120px;
+    overflow-x: hidden;
 }
 
 body {
@@ -1975,7 +1976,6 @@ body {
 .chat-panel {
     position: absolute;
     bottom: 80px;
-    right: 0;
     width: 350px;
     height: 500px;
     background: var(--dark-glass-bg);
@@ -1991,6 +1991,12 @@ body {
 .chat-panel.active {
     display: flex;
     animation: slideUp 0.3s ease;
+    
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    bottom: 80px;
 }
 
 .chat-header {
@@ -2147,9 +2153,7 @@ body {
         width: calc(100vw - 2rem);
         max-width: 350px;
         height: 400px;
-        right: var(--spacing-md);
-        left: var(--spacing-md);
-        margin: 0 auto;
+        margin: 0;
     }
     .chat-widget {
         bottom: var(--spacing-md);
@@ -2159,8 +2163,6 @@ body {
 @media (max-width: 480px) {
     .chat-panel {
         width: calc(100vw - 1rem);
-        right: 0.5rem;
-        left: 0.5rem;
     }
 }
 
