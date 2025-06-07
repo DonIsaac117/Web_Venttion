@@ -5,7 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     inicializarAnimaciones();
-    configurarCanvasParticulas();
+    // configurarCanvasParticulas();
     animarEstadisticasHero();
     configurarScrollEfectos();
     inicializarIconosLucide();
@@ -83,7 +83,7 @@ function configurarCanvasParticulas() {
     }
     
     // Crear partículas
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 60; i++) {
         particulas.push(new Particula());
     }
     
