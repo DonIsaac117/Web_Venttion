@@ -5,7 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     inicializarAnimaciones();
-    configurarCanvasParticulas();
+    // configurarCanvasParticulas();
     animarEstadisticasHero();
     configurarScrollEfectos();
     inicializarIconosLucide();
