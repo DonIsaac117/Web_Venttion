@@ -5,7 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     inicializarAnimaciones();
-    // configurarCanvasParticulas();
+    configurarCanvasParticulas();
     animarEstadisticasHero();
     configurarScrollEfectos();
     inicializarIconosLucide();
@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Verifica si el dispositivo actual es móvil basado en el ancho de la ventana.
+ * Determina si el dispositivo actual es un móvil basándose en el ancho de la ventana.
  * @returns {boolean} Verdadero si es un dispositivo móvil, falso en caso contrario.
  */
 function esDispositivoMovil() {
-    return window.innerWidth <= 768; // Ancho típico para considerar un dispositivo móvil
+    return window.innerWidth < 768; // Ancho típico para dispositivos móviles (tablets y teléfonos)
 }
 
 /**
@@ -46,6 +46,26 @@ function configurarCanvasParticulas() {
     const ctx = canvas.getContext('2d');
     let particulas = [];
     
+    // Parámetros de la animación, ajustables para rendimiento en móviles
+    let cantidadParticulas = 60;
+    let tamanoParticulaMax = 1;
+    let tamanoParticulaMin = 1;
+    let velocidadParticulaFactor = 0.3;
+    let opacidadParticulaMax = 0.1;
+    let opacidadParticulaMin = 0.1;
+    let distanciaConexion = 180;
+
+    // Ajustar parámetros si es un dispositivo móvil
+    if (esDispositivoMovil()) {
+        cantidadParticulas = 35; // Menos partículas
+        tamanoParticulaMax = 0.5;
+        tamanoParticulaMin = 0.5;
+        velocidadParticulaFactor = 0.1; // Más lentas
+        opacidadParticulaMax = 0.05;
+        opacidadParticulaMin = 0.05;
+        distanciaConexion = 120; // Conexiones en distancias más cortas
+    }
+    
     // Ajustar tamaño del canvas
     function redimensionarCanvas() {
         canvas.width = window.innerWidth;
@@ -60,10 +80,10 @@ function configurarCanvasParticulas() {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.velocidadX = (Math.random() - 0.5) * velocidadParticula;
-            this.velocidadY = (Math.random() - 0.5) * velocidadParticula;
-            this.tamano = Math.random() * tamanoParticulaRango + tamanoParticulaBase;
-            this.opacidad = Math.random() * opacidadParticulaRango + opacidadParticulaBase;
+            this.velocidadX = (Math.random() - 0.5) * velocidadParticulaFactor;
+            this.velocidadY = (Math.random() - 0.5) * velocidadParticulaFactor;
+            this.tamano = Math.random() * tamanoParticulaMax + tamanoParticulaMin;
+            this.opacidad = Math.random() * opacidadParticulaMax + opacidadParticulaMin;
             this.color = Math.random() > 0.5 ? '#00d4ff' : '#8b5cf6';
         }
         
@@ -90,39 +110,6 @@ function configurarCanvasParticulas() {
         }
     }
     
-    // Configuración de partículas según el dispositivo
-    let cantidadParticulas;
-    let tamanoParticulaBase;
-    let tamanoParticulaRango;
-    let velocidadParticula;
-    let opacidadParticulaBase;
-    let opacidadParticulaRango;
-    let distanciaConexion;
-    let grosorLineaConexion;
-    let opacidadLineaConexion;
-
-    if (esDispositivoMovil()) {
-        cantidadParticulas = 30; // Menos partículas para mejor rendimiento
-        tamanoParticulaBase = 0.5;
-        tamanoParticulaRango = 0.5; // Tamaño más pequeño
-        velocidadParticula = 0.1; // Más lento
-        opacidadParticulaBase = 0.05;
-        opacidadParticulaRango = 0.03; // Menos opacas
-        distanciaConexion = 100; // Menor distancia de conexión
-        grosorLineaConexion = 1;
-        opacidadLineaConexion = 0.2;
-    } else {
-        cantidadParticulas = 60; // Valores originales para escritorio
-        tamanoParticulaBase = 1;
-        tamanoParticulaRango = 1;
-        velocidadParticula = 0.3;
-        opacidadParticulaBase = 0.1;
-        opacidadParticulaRango = 0.1;
-        distanciaConexion = 180;
-        grosorLineaConexion = 1.5;
-        opacidadLineaConexion = 0.4;
-    }
-
     // Crear partículas
     for (let i = 0; i < cantidadParticulas; i++) {
         particulas.push(new Particula());
@@ -141,8 +128,8 @@ function configurarCanvasParticulas() {
                     ctx.beginPath();
                     ctx.moveTo(particulas[i].x, particulas[i].y);
                     ctx.lineTo(particulas[j].x, particulas[j].y);
-                    ctx.strokeStyle = `rgba(0, 212, 255, ${opacidadLineaConexion * (1 - distancia / distanciaConexion)})`;
-                    ctx.lineWidth = grosorLineaConexion;
+                    ctx.strokeStyle = `rgba(0, 212, 255, ${0.4 * (1 - distancia / distanciaConexion)})`;
+                    ctx.lineWidth = 1.5;
                     ctx.stroke();
                 }
             }
