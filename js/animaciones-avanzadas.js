@@ -83,7 +83,7 @@ function configurarCanvasParticulas() {
     }
     
     // Crear partículas
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 5; i++) {
         particulas.push(new Particula());
     }
     
