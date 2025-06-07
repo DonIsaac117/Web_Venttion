@@ -15,6 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
+ * Verifica si el dispositivo actual es móvil basado en el ancho de la ventana.
+ * @returns {boolean} Verdadero si es un dispositivo móvil, falso en caso contrario.
+ */
+function esDispositivoMovil() {
+    return window.innerWidth <= 768; // Ancho típico para considerar un dispositivo móvil
+}
+
+/**
  * Inicializa todas las animaciones principales
  */
 function inicializarAnimaciones() {
@@ -52,10 +60,10 @@ function configurarCanvasParticulas() {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.velocidadX = (Math.random() - 0.5) * 0.3;
-            this.velocidadY = (Math.random() - 0.5) * 0.3;
-            this.tamano = Math.random() * 1 + 1;
-            this.opacidad = Math.random() * 0.1 + 0.1;
+            this.velocidadX = (Math.random() - 0.5) * velocidadParticula;
+            this.velocidadY = (Math.random() - 0.5) * velocidadParticula;
+            this.tamano = Math.random() * tamanoParticulaRango + tamanoParticulaBase;
+            this.opacidad = Math.random() * opacidadParticulaRango + opacidadParticulaBase;
             this.color = Math.random() > 0.5 ? '#00d4ff' : '#8b5cf6';
         }
         
@@ -82,8 +90,41 @@ function configurarCanvasParticulas() {
         }
     }
     
+    // Configuración de partículas según el dispositivo
+    let cantidadParticulas;
+    let tamanoParticulaBase;
+    let tamanoParticulaRango;
+    let velocidadParticula;
+    let opacidadParticulaBase;
+    let opacidadParticulaRango;
+    let distanciaConexion;
+    let grosorLineaConexion;
+    let opacidadLineaConexion;
+
+    if (esDispositivoMovil()) {
+        cantidadParticulas = 30; // Menos partículas para mejor rendimiento
+        tamanoParticulaBase = 0.5;
+        tamanoParticulaRango = 0.5; // Tamaño más pequeño
+        velocidadParticula = 0.1; // Más lento
+        opacidadParticulaBase = 0.05;
+        opacidadParticulaRango = 0.03; // Menos opacas
+        distanciaConexion = 100; // Menor distancia de conexión
+        grosorLineaConexion = 1;
+        opacidadLineaConexion = 0.2;
+    } else {
+        cantidadParticulas = 60; // Valores originales para escritorio
+        tamanoParticulaBase = 1;
+        tamanoParticulaRango = 1;
+        velocidadParticula = 0.3;
+        opacidadParticulaBase = 0.1;
+        opacidadParticulaRango = 0.1;
+        distanciaConexion = 180;
+        grosorLineaConexion = 1.5;
+        opacidadLineaConexion = 0.4;
+    }
+
     // Crear partículas
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < cantidadParticulas; i++) {
         particulas.push(new Particula());
     }
     
@@ -96,12 +137,12 @@ function configurarCanvasParticulas() {
                     Math.pow(particulas[i].y - particulas[j].y, 2)
                 );
                 
-                if (distancia < 180) {
+                if (distancia < distanciaConexion) {
                     ctx.beginPath();
                     ctx.moveTo(particulas[i].x, particulas[i].y);
                     ctx.lineTo(particulas[j].x, particulas[j].y);
-                    ctx.strokeStyle = `rgba(0, 212, 255, ${0.4 * (1 - distancia / 180)})`;
-                    ctx.lineWidth = 1.5;
+                    ctx.strokeStyle = `rgba(0, 212, 255, ${opacidadLineaConexion * (1 - distancia / distanciaConexion)})`;
+                    ctx.lineWidth = grosorLineaConexion;
                     ctx.stroke();
                 }
             }
