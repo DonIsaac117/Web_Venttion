@@ -1,10 +1,11 @@
 /* ========================================
-   CONFIGURACIÓN BASE Y VARIABLES
+   0. CONFIGURACIÓN GLOBAL Y ESTILOS BASE
    ======================================== */
 
-/* Importar fuentes futuristas */
+/* Importar fuentes */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
+/* Variables Globales */
 :root {
     /* Colores Futuristas */
     --color-primario: #0a0e27;
@@ -94,13 +95,35 @@ body {
     max-width: 100vw;
 }
 
+/* Contenedor Principal */
 .contenedor-principal {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--spacing-xl);
 }
 
-/* Canvas de Partículas */
+/* --- Responsive Global --- */
+@media (max-width: 1200px) {
+    .contenedor-principal {
+        padding: 0 var(--spacing-lg);
+    }
+}
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 80px;
+    }
+    .contenedor-principal {
+        padding: 0 var(--spacing-md);
+    }
+}
+@media (max-width: 480px) {
+    .contenedor-principal {
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+
+/* Elementos Globales de la Interfaz */
 .canvas-fondo {
     position: fixed;
     top: 0;
@@ -111,11 +134,77 @@ body {
     pointer-events: none;
 }
 
-/* ========================================
-   POSICIONAMIENTO PARA PARTÍCULAS VISIBLES
-   ======================================== */
+.cursor-light {
+    position: fixed;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+    mix-blend-mode: screen;
+}
 
-/* Contenido de secciones por encima de partículas */
+.cursor-light.click {
+    animation: cursor-pulse 0.3s ease-out;
+}
+
+/* Estilos Comunes para Secciones */
+.seccion-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+}
+
+.badge-seccion {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    color: var(--color-secundario);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    backdrop-filter: blur(10px);
+}
+
+.titulo-seccion-moderna {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: var(--color-blanco);
+    margin-bottom: var(--spacing-lg);
+}
+
+.subtitulo-seccion {
+    font-size: 1.25rem;
+    color: var(--color-gris-claro);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.texto-gradient {
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+/* --- Responsive Títulos de Sección --- */
+@media (max-width: 768px) {
+    .titulo-seccion-moderna {
+        font-size: clamp(2rem, 6vw, 2.5rem);
+    }
+    .subtitulo-seccion {
+        font-size: 1.1rem;
+    }
+}
+
+/* Posicionamiento de Contenido sobre Partículas */
 .seccion-hero-futurista .hero-content-centrado,
 .seccion-nosotros-moderna > *:not(.timeline-innovacion),
 .seccion-servicios-avanzada > *,
@@ -127,7 +216,6 @@ body {
     z-index: 10;
 }
 
-/* Timeline e innovación también por encima */
 .timeline-innovacion,
 .timeline-item,
 .valores-grid,
@@ -136,8 +224,9 @@ body {
     z-index: 10;
 }
 
+
 /* ========================================
-   NAVEGACIÓN FUTURISTA
+   1. ENCABEZADO Y NAVEGACIÓN
    ======================================== */
 
 .encabezado-futurista {
@@ -150,7 +239,6 @@ body {
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--dark-glass-border);
     transition: all var(--transition-normal);
-    /* Estado inicial: oculto arriba */
     transform: translateY(-100%);
     opacity: 0;
     width: 100%;
@@ -158,26 +246,10 @@ body {
     box-sizing: border-box;
 }
 
-/* Animación de entrada del navbar */
 .encabezado-futurista.navbar-loaded {
     transform: translateY(0);
     opacity: 1;
     animation: navbar-slide-down 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes navbar-slide-down {
-    0% {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    60% {
-        transform: translateY(5px);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
 }
 
 .encabezado-futurista.scrolled {
@@ -210,30 +282,24 @@ body {
     display: inline-block;
 }
 
-/* Letras individuales del logo */
 .letra-logo {
     display: inline-block;
     opacity: 0;
     transform: translateY(-20px) rotateY(90deg);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    /* Color sólido como respaldo */
     color: var(--color-blanco);
 }
 
-/* Estado animado de las letras */
 .letra-logo.letra-animada {
     opacity: 1 !important;
     transform: translateY(0) rotateY(0deg);
-    /* Aplicar gradiente solo cuando están animadas */
     background: var(--gradient-secondary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    /* Respaldo de color si el gradiente falla */
     color: var(--color-secundario);
 }
 
-/* Respaldo adicional para navegadores que no soportan gradientes en texto */
 @supports not (-webkit-background-clip: text) {
     .letra-logo.letra-animada {
         color: var(--color-secundario) !important;
@@ -241,47 +307,14 @@ body {
     }
 }
 
-/* Efectos especiales por letra */
-.letra-logo[data-letter="V"] { 
-    animation-delay: 0s; 
-}
-.letra-logo[data-letter="E"]:nth-of-type(2) { 
-    animation-delay: 0.1s; 
-}
-.letra-logo[data-letter="N"]:nth-of-type(3) { 
-    animation-delay: 0.2s; 
-}
-.letra-logo[data-letter="T"]:nth-of-type(4) { 
-    animation-delay: 0.3s; 
-}
-.letra-logo[data-letter="T"]:nth-of-type(5) { 
-    animation-delay: 0.4s; 
-}
-.letra-logo[data-letter="I"] { 
-    animation-delay: 0.5s; 
-}
-.letra-logo[data-letter="O"] { 
-    animation-delay: 0.6s; 
-}
-.letra-logo[data-letter="N"]:last-child { 
-    animation-delay: 0.7s; 
-}
-
-/* Animación de aparición con rebote */
-@keyframes letra-entrada {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px) rotateY(90deg) scale(0.5);
-    }
-    50% {
-        opacity: 0.8;
-        transform: translateY(-5px) rotateY(45deg) scale(1.1);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) rotateY(0deg) scale(1);
-    }
-}
+.letra-logo[data-letter="V"] { animation-delay: 0s; }
+.letra-logo[data-letter="E"]:nth-of-type(2) { animation-delay: 0.1s; }
+.letra-logo[data-letter="N"]:nth-of-type(3) { animation-delay: 0.2s; }
+.letra-logo[data-letter="T"]:nth-of-type(4) { animation-delay: 0.3s; }
+.letra-logo[data-letter="T"]:nth-of-type(5) { animation-delay: 0.4s; }
+.letra-logo[data-letter="I"] { animation-delay: 0.5s; }
+.letra-logo[data-letter="O"] { animation-delay: 0.6s; }
+.letra-logo[data-letter="N"]:last-child { animation-delay: 0.7s; }
 
 .logo-underline {
     position: absolute;
@@ -401,41 +434,65 @@ body {
     transition: all var(--transition-normal);
 }
 
+/* --- Responsive Navegación --- */
+@media (max-width: 1024px) {
+    .menu-futurista {
+        display: none;
+        position: fixed;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--dark-glass-bg);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: var(--spacing-xl);
+        border-top: 1px solid var(--dark-glass-border);
+        z-index: 999;
+        transition: all var(--transition-normal);
+    }
+    .menu-futurista.active {
+        display: flex;
+        top: 100%;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+    .enlace-nav-moderno {
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+        justify-content: center;
+        padding: var(--spacing-lg);
+    }
+}
+@media (max-width: 768px) {
+    .navegacion-moderna {
+        padding: var(--spacing-md);
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .contenedor-logo-moderno {
+        flex-shrink: 0;
+        max-width: calc(100vw - 80px);
+        overflow: hidden;
+    }
+    .logo-texto {
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+    .menu-toggle {
+        width: 35px;
+        height: 35px;
+        flex-shrink: 0;
+        margin-left: var(--spacing-md);
+    }
+}
+
+
 /* ========================================
-   EFECTO DE CURSOR CON LUZ
-   ======================================== */
-
-.cursor-light {
-    position: fixed;
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease-out;
-    mix-blend-mode: screen;
-}
-
-.cursor-light.click {
-    animation: cursor-pulse 0.3s ease-out;
-}
-
-@keyframes cursor-pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-        background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, rgba(139, 92, 246, 0.2) 50%, transparent 70%);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* ========================================
-   HERO SECTION FUTURISTA
+   2. SECCIÓN HERO (INICIO)
    ======================================== */
 
 .seccion-hero-futurista {
@@ -473,14 +530,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.hero-content {
-    flex: 1;
-    max-width: 600px;
-    z-index: 2;
-    position: relative;
-    margin-left: 5rem;
 }
 
 .hero-badge {
@@ -537,14 +586,6 @@ body {
 .titulo-linea-1 { animation-delay: 0.3s; }
 .titulo-linea-2 { animation-delay: 0.4s; }
 .titulo-linea-3 { animation-delay: 0.5s; }
-
-.texto-gradient {
-    background: var(--gradient-secondary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-}
 
 .texto-destacado-empresa {
     color: var(--color-secundario);
@@ -655,71 +696,68 @@ body {
     transform: translateY(-2px);
 }
 
-/* Visualización Hero 3D - YA NO SE USA */
-.hero-visual {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-    min-height: 500px;
+/* --- Responsive Hero --- */
+@media (max-width: 1024px) {
+    .seccion-hero-futurista {
+        padding-top: 120px;
+    }
+    .hero-estadisticas {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        align-items: center;
+    }
+    .hero-estadisticas .estadistica-item {
+        max-width: 200px;
+    }
+}
+@media (max-width: 768px) {
+    .seccion-hero-futurista {
+        padding: 120px var(--spacing-md) var(--spacing-md);
+        min-height: 100vh;
+        max-height: none;
+        padding-top: 120px;
+    }
+    .hero-content-centrado {
+        margin-top: 0;
+        padding-top: var(--spacing-lg);
+    }
+    .hero-titulo {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+    .hero-descripcion {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-lg);
+    }
+    .hero-botones {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
+    }
+    .boton-primario-futurista,
+    .boton-secundario-futurista {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+}
+@media (max-width: 480px) {
+    .hero-estadisticas {
+        gap: var(--spacing-md);
+    }
+    .estadistica-item {
+        padding: var(--spacing-sm);
+    }
+    .numero-animado {
+        font-size: 1.5rem;
+    }
+    .estadistica-texto {
+        font-size: 0.75rem;
+    }
 }
 
-.hero-3d-canvas {
-    width: 100%;
-    height: 500px;
-    border-radius: var(--border-radius-xl);
-    overflow: hidden;
-    position: relative;
-}
-
-.hero-3d-canvas canvas {
-    display: block;
-    border-radius: var(--border-radius-xl);
-}
 
 /* ========================================
-   SECCIONES COMUNES
-   ======================================== */
-
-.seccion-header {
-    text-align: center;
-    margin-bottom: var(--spacing-3xl);
-}
-
-.badge-seccion {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 50px;
-    color: var(--color-secundario);
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: var(--spacing-lg);
-    backdrop-filter: blur(10px);
-}
-
-.titulo-seccion-moderna {
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: 800;
-    color: var(--color-blanco);
-    margin-bottom: var(--spacing-lg);
-}
-
-.subtitulo-seccion {
-    font-size: 1.25rem;
-    color: var(--color-gris-claro);
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.7;
-}
-
-/* ========================================
-   SECCIÓN NOSOTROS
+   3. SECCIÓN NOSOTROS
    ======================================== */
 
 .seccion-nosotros-moderna {
@@ -938,8 +976,67 @@ body {
     line-height: 1.7;
 }
 
+/* --- Responsive Nosotros --- */
+@media (max-width: 1200px) {
+    .timeline-innovacion {
+        max-width: 700px;
+    }
+}
+@media (max-width: 1024px) {
+    .timeline-innovacion {
+        max-width: 100%;
+        padding: 0 var(--spacing-lg);
+    }
+    .timeline-item {
+        flex-direction: column !important;
+        text-align: center;
+    }
+    .timeline-contenido {
+        margin: var(--spacing-lg) 0 0 0 !important;
+        max-width: 100%;
+    }
+    .timeline-punto {
+        position: relative;
+        left: auto;
+        transform: none;
+        margin-bottom: var(--spacing-lg);
+    }
+    .timeline-innovacion::before {
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    .timeline-contenido {
+        padding: var(--spacing-lg);
+    }
+    .timeline-contenido h3 {
+        font-size: 1.2rem;
+    }
+    .timeline-punto {
+        width: 60px;
+        height: 60px;
+        font-size: 1.25rem;
+    }
+    .valores-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    .valor-card {
+        padding: var(--spacing-lg);
+    }
+}
+@media (max-width: 480px) {
+    .timeline-contenido {
+        padding: var(--spacing-md);
+    }
+    .valor-card {
+        padding: var(--spacing-md);
+    }
+}
+
+
 /* ========================================
-   SERVICIOS AVANZADOS
+   4. SECCIÓN SERVICIOS
    ======================================== */
 
 .seccion-servicios-avanzada {
@@ -1069,7 +1166,6 @@ body {
     font-weight: 500;
 }
 
-/* Ilustraciones de Servicios */
 .servicio-visual {
     display: flex;
     justify-content: center;
@@ -1085,7 +1181,6 @@ body {
     justify-content: center;
 }
 
-/* Visión por Computadora */
 .vision-computadora {
     background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
     border-radius: 50%;
@@ -1121,7 +1216,6 @@ body {
     animation: pulse-ring 2s infinite 0.5s;
 }
 
-/* TPV Sistema */
 .tpv-sistema {
     perspective: 1000px;
 }
@@ -1154,7 +1248,6 @@ body {
 .linea-producto:nth-child(2) { animation-delay: 0.3s; }
 .linea-producto:nth-child(3) { animation-delay: 0.6s; }
 
-/* Integración BD */
 .integracion-bd {
     position: relative;
 }
@@ -1194,18 +1287,44 @@ body {
     content: attr(data-tipo);
 }
 
+/* --- Responsive Servicios --- */
+@media (max-width: 1200px) {
+    .servicio-detallado {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+        text-align: center;
+    }
+    .servicio-inverso .servicio-contenido,
+    .servicio-inverso .servicio-visual {
+        order: unset;
+    }
+}
+@media (max-width: 768px) {
+    .casos-grid {
+        /* Se usa flex-direction: column en el original, aquí se asegura que sea 1 columna para móviles */
+        grid-template-columns: 1fr; 
+    }
+    .caso-item {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    .beneficios-proyectados {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+}
+
+
 /* ========================================
-   SECCIÓN TECNOLOGÍA
+   5. SECCIÓN TECNOLOGÍA
    ======================================== */
 
 .seccion-tecnologia {
     padding: var(--spacing-3xl) 0;
     background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 1) 15%, rgba(15, 23, 42, 1) 70%, rgba(26, 31, 58, 0.9) 85%, rgba(26, 31, 58, 0.9) 100%);
 }
-
-/* ========================================
-   CARRUSEL TECNOLÓGICO
-   ======================================== */
 
 .tech-carousel-container {
     position: relative;
@@ -1233,7 +1352,7 @@ body {
     backdrop-filter: blur(10px);
     text-align: center;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    margin: 0 var(--spacing-md); /* Espacio entre slides */
+    margin: 0 var(--spacing-md);
 }
 
 .tech-categoria h3 {
@@ -1312,7 +1431,6 @@ body {
     transform: translateX(-50%) translateY(-5px);
 }
 
-/* Controles del Carrusel */
 .carousel-controls {
     display: flex;
     justify-content: center;
@@ -1371,6 +1489,187 @@ body {
 .dot:hover {
     background: var(--color-secundario);
     transform: scale(1.1);
+}
+
+/* --- Responsive Tecnología --- */
+@media (max-width: 1024px) {
+    /* En este breakpoint, los estilos para .tech-items ya están en el CSS original. 
+       Se podría agregar lógica de overflow si el carrusel se desactiva. */
+    .tech-items {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+
+/* ========================================
+   6. SECCIÓN VENTAJAS
+   ======================================== */
+
+.seccion-ventajas {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(180deg, rgba(26, 31, 58, 0.9) 0%, var(--color-primario) 15%, var(--color-primario) 70%, rgba(10, 14, 39, 0.95) 85%, rgba(10, 14, 39, 0.95) 100%);
+    position: relative;
+}
+
+.seccion-ventajas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.ventajas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-3xl);
+    position: relative;
+    z-index: 2;
+}
+
+.ventaja-card {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-2xl);
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-slow);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.ventaja-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    transition: left 0.8s ease;
+}
+
+.ventaja-card:hover::before {
+    left: 100%;
+}
+
+.ventaja-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+    border-color: var(--color-secundario);
+}
+
+.ventaja-numero {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-secundario);
+    opacity: 0.3;
+    font-family: var(--font-mono);
+}
+
+.ventaja-icono {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-blanco);
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-glow);
+    transition: all var(--transition-normal);
+}
+
+.ventaja-card:hover .ventaja-icono {
+    transform: scale(1.1) rotate(360deg);
+}
+
+.ventaja-card h3 {
+    color: var(--color-blanco);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+}
+
+.ventaja-card p {
+    color: var(--color-gris-claro);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-lg);
+}
+
+.ventaja-detalle {
+    padding: var(--spacing-md);
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: var(--border-radius-md);
+    border-left: 3px solid var(--color-secundario);
+}
+
+.ventaja-detalle strong {
+    color: var(--color-secundario);
+    font-weight: 600;
+}
+
+/* --- Responsive Ventajas --- */
+@media (max-width: 768px) {
+    .ventajas-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    .ventaja-card {
+        padding: var(--spacing-lg);
+    }
+}
+@media (max-width: 480px) {
+    .ventaja-card {
+        padding: var(--spacing-md);
+    }
+}
+
+
+/* ========================================
+   7. SECCIÓN CONTACTO
+   ======================================== */
+
+.seccion-contacto-futurista {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(180deg, rgba(10, 14, 39, 0.95) 0%, var(--color-primario) 15%, var(--color-primario) 70%, rgba(15, 23, 42, 0.9) 85%, rgba(15, 23, 42, 0.9) 100%);
+    position: relative;
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-3xl);
+    margin-top: var(--spacing-3xl);
+}
+
+.contacto-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.info-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-normal);
+    text-align: center;
 }
 
 .info-card:hover {
@@ -1530,8 +1829,17 @@ body {
     animation: spin 1s linear infinite;
 }
 
+/* --- Responsive Contacto --- */
+@media (max-width: 1024px) {
+    .contacto-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+}
+
+
 /* ========================================
-   FOOTER FUTURISTA
+   8. FOOTER
    ======================================== */
 
 .footer-futurista {
@@ -1599,8 +1907,32 @@ body {
     font-family: var(--font-mono);
 }
 
+/* --- Responsive Footer --- */
+@media (max-width: 1024px) {
+    .footer-contenido {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+        text-align: center;
+    }
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .footer-links {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+}
+
+
 /* ========================================
-   CHAT WIDGET
+   9. CHAT WIDGET
    ======================================== */
 
 .chat-widget {
@@ -1809,315 +2141,8 @@ body {
     background: var(--color-acento);
 }
 
-/* ========================================
-   ANIMACIONES ADICIONALES
-   ======================================== */
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* ========================================
-   RESPONSIVE COMPLETO
-   ======================================== */
-
-/* Tablets y laptops pequeñas */
-@media (max-width: 1200px) {
-    .contenedor-principal {
-        padding: 0 var(--spacing-lg);
-    }
-    
-    .servicio-detallado {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-        text-align: center;
-    }
-    
-    .servicio-inverso .servicio-contenido,
-    .servicio-inverso .servicio-visual {
-        order: unset;
-    }
-    
-    .timeline-innovacion {
-        max-width: 700px;
-    }
-}
-
-@media (max-width: 1024px) {
-    /* Scroll padding para tablets */
-    html {
-        scroll-padding-top: 100px;
-    }
-    
-    /* Hero responsive para tablets */
-    .seccion-hero-futurista {
-        padding-top: 120px;
-    }
-    
-    /* Navbar responsive */
-    .menu-futurista {
-        display: none;
-        position: fixed;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--dark-glass-bg);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: var(--spacing-xl);
-        border-top: 1px solid var(--dark-glass-border);
-        z-index: 999;
-        transition: all var(--transition-normal);
-    }
-    
-    .menu-futurista.active {
-        display: flex;
-        top: 100%;
-    }
-    
-    .menu-toggle {
-        display: flex;
-    }
-    
-    .enlace-nav-moderno {
-        width: 100%;
-        margin-bottom: var(--spacing-sm);
-        justify-content: center;
-        padding: var(--spacing-lg);
-    }
-    
-    /* Hero responsive */
-    .hero-content {
-        margin-left: 0;
-        text-align: center;
-    }
-    
-    .hero-estadisticas {
-        flex-direction: column;
-        gap: var(--spacing-lg);
-        align-items: center;
-    }
-    
-    .hero-estadisticas .estadistica-item {
-        max-width: 200px;
-    }
-    
-    /* Timeline responsive */
-    .timeline-innovacion {
-        max-width: 100%;
-        padding: 0 var(--spacing-lg);
-    }
-    
-    .timeline-item {
-        flex-direction: column !important;
-        text-align: center;
-    }
-    
-    .timeline-contenido {
-        margin: var(--spacing-lg) 0 0 0 !important;
-        max-width: 100%;
-    }
-    
-    .timeline-punto {
-        position: relative;
-        left: auto;
-        transform: none;
-        margin-bottom: var(--spacing-lg);
-    }
-    
-    .timeline-innovacion::before {
-        display: none;
-    }
-    
-    /* Servicios responsive */
-    .contacto-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-    
-    .footer-contenido {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-        text-align: center;
-    }
-    
-    .footer-links {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    /* Tech carousel responsive */
-    .tech-carousel-container {
-        overflow-x: auto;
-        padding-bottom: var(--spacing-md);
-    }
-    
-    .tech-items {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
-
+/* --- Responsive Chat Widget --- */
 @media (max-width: 768px) {
-    /* Scroll padding para móviles */
-    html {
-        scroll-padding-top: 80px;
-    }
-    
-    /* Contenedor principal */
-    .contenedor-principal {
-        padding: 0 var(--spacing-md);
-    }
-    
-    /* Navegación móvil */
-    .navegacion-moderna {
-        padding: var(--spacing-md);
-        width: 100%;
-        max-width: 100vw;
-        box-sizing: border-box;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .contenedor-logo-moderno {
-        flex-shrink: 0;
-        max-width: calc(100vw - 80px);
-        overflow: hidden;
-    }
-    
-    .logo-texto {
-        font-size: 1.5rem;
-        white-space: nowrap;
-    }
-    
-    .menu-toggle {
-        width: 35px;
-        height: 35px;
-        flex-shrink: 0;
-        margin-left: var(--spacing-md);
-    }
-    
-    /* Hero móvil */
-    .seccion-hero-futurista {
-        padding: 120px var(--spacing-md) var(--spacing-md);
-        min-height: 100vh;
-        max-height: none;
-        padding-top: 120px;
-    }
-    
-    .hero-content-centrado {
-        margin-top: 0;
-        padding-top: var(--spacing-lg);
-    }
-    
-    .hero-titulo {
-        font-size: clamp(2rem, 8vw, 3rem);
-    }
-    
-    .hero-descripcion {
-        font-size: 1rem;
-        margin-bottom: var(--spacing-lg);
-    }
-    
-    .hero-botones {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--spacing-md);
-    }
-    
-    .boton-primario-futurista,
-    .boton-secundario-futurista {
-        width: 100%;
-        max-width: 280px;
-        justify-content: center;
-    }
-    
-    /* Títulos de sección móvil */
-    .titulo-seccion-moderna {
-        font-size: clamp(2rem, 6vw, 2.5rem);
-    }
-    
-    .subtitulo-seccion {
-        font-size: 1.1rem;
-    }
-    
-    /* Timeline móvil mejorado */
-    .timeline-contenido {
-        padding: var(--spacing-lg);
-    }
-    
-    .timeline-contenido h3 {
-        font-size: 1.2rem;
-    }
-    
-    .timeline-punto {
-        width: 60px;
-        height: 60px;
-        font-size: 1.25rem;
-    }
-    
-    /* Valores grid móvil */
-    .valores-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
-    }
-    
-    .valor-card {
-        padding: var(--spacing-lg);
-    }
-    
-    /* Ventajas móvil */
-    .ventajas-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
-    }
-    
-    .ventaja-card {
-        padding: var(--spacing-lg);
-    }
-    
-    /* Casos de uso móvil */
-    .casos-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .caso-item {
-        flex-direction: column;
-        text-align: center;
-        gap: var(--spacing-sm);
-    }
-    
-    /* Beneficios móvil */
-    .beneficios-proyectados {
-        flex-direction: column;
-        gap: var(--spacing-md);
-        text-align: center;
-    }
-    
-    /* Footer móvil */
-    .footer-links {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        gap: var(--spacing-md);
-        text-align: center;
-    }
-    
-    /* Chat widget móvil */
     .chat-panel {
         width: calc(100vw - 2rem);
         max-width: 350px;
@@ -2126,44 +2151,12 @@ body {
         left: var(--spacing-md);
         margin: 0 auto;
     }
-    
     .chat-widget {
         bottom: var(--spacing-md);
         right: var(--spacing-md);
     }
 }
-
 @media (max-width: 480px) {
-    /* Ajustes para móviles muy pequeños */
-    .contenedor-principal {
-        padding: 0 var(--spacing-sm);
-    }
-    
-    .hero-estadisticas {
-        gap: var(--spacing-md);
-    }
-    
-    .estadistica-item {
-        padding: var(--spacing-sm);
-    }
-    
-    .numero-animado {
-        font-size: 1.5rem;
-    }
-    
-    .estadistica-texto {
-        font-size: 0.75rem;
-    }
-    
-    .timeline-contenido {
-        padding: var(--spacing-md);
-    }
-    
-    .valor-card,
-    .ventaja-card {
-        padding: var(--spacing-md);
-    }
-    
     .chat-panel {
         width: calc(100vw - 1rem);
         right: 0.5rem;
@@ -2171,155 +2164,57 @@ body {
     }
 }
 
-/* ========================================
-   SECCIÓN VENTAJAS COMPETITIVAS
-   ======================================== */
-
-.seccion-ventajas {
-    padding: var(--spacing-3xl) 0;
-    background: linear-gradient(180deg, rgba(26, 31, 58, 0.9) 0%, var(--color-primario) 15%, var(--color-primario) 70%, rgba(10, 14, 39, 0.95) 85%, rgba(10, 14, 39, 0.95) 100%);
-    position: relative;
-}
-
-.seccion-ventajas::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
-    z-index: 1;
-}
-
-.ventajas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
-    margin-top: var(--spacing-3xl);
-    position: relative;
-    z-index: 2;
-}
-
-.ventaja-card {
-    position: relative;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--border-radius-lg);
-    padding: var(--spacing-2xl);
-    backdrop-filter: blur(10px);
-    transition: all var(--transition-slow);
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.ventaja-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-    transition: left 0.8s ease;
-}
-
-.ventaja-card:hover::before {
-    left: 100%;
-}
-
-.ventaja-card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-    border-color: var(--color-secundario);
-}
-
-.ventaja-numero {
-    position: absolute;
-    top: var(--spacing-lg);
-    right: var(--spacing-lg);
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--color-secundario);
-    opacity: 0.3;
-    font-family: var(--font-mono);
-}
-
-.ventaja-icono {
-    width: 80px;
-    height: 80px;
-    background: var(--gradient-secondary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--spacing-lg);
-    color: var(--color-blanco);
-    font-size: 1.5rem;
-    box-shadow: var(--shadow-glow);
-    transition: all var(--transition-normal);
-}
-
-.ventaja-card:hover .ventaja-icono {
-    transform: scale(1.1) rotate(360deg);
-}
-
-.ventaja-card h3 {
-    color: var(--color-blanco);
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-md);
-}
-
-.ventaja-card p {
-    color: var(--color-gris-claro);
-    line-height: 1.7;
-    margin-bottom: var(--spacing-lg);
-}
-
-.ventaja-detalle {
-    padding: var(--spacing-md);
-    background: rgba(0, 212, 255, 0.1);
-    border-radius: var(--border-radius-md);
-    border-left: 3px solid var(--color-secundario);
-}
-
-.ventaja-detalle strong {
-    color: var(--color-secundario);
-    font-weight: 600;
-}
 
 /* ========================================
-   SECCIÓN CONTACTO FUTURISTA
+   10. ANIMACIONES ADICIONALES Y KEYFRAMES
    ======================================== */
 
-.seccion-contacto-futurista {
-    padding: var(--spacing-3xl) 0;
-    background: linear-gradient(180deg, rgba(10, 14, 39, 0.95) 0%, var(--color-primario) 15%, var(--color-primario) 70%, rgba(15, 23, 42, 0.9) 85%, rgba(15, 23, 42, 0.9) 100%);
-    position: relative;
+@keyframes navbar-slide-down {
+    0% { transform: translateY(-100%); opacity: 0; }
+    60% { transform: translateY(5px); opacity: 0.8; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
-.contacto-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: var(--spacing-3xl);
-    margin-top: var(--spacing-3xl);
+@keyframes letra-entrada {
+    0% { opacity: 0; transform: translateY(-20px) rotateY(90deg) scale(0.5); }
+    50% { opacity: 0.8; transform: translateY(-5px) rotateY(45deg) scale(1.1); }
+    100% { opacity: 1; transform: translateY(0) rotateY(0deg) scale(1); }
 }
 
-.contacto-info {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xl);
+@keyframes cursor-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, rgba(139, 92, 246, 0.2) 50%, transparent 70%); }
+    100% { transform: scale(1); }
 }
 
-.info-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--border-radius-lg);
-    padding: var(--spacing-xl);
-    backdrop-filter: blur(10px);
-    transition: all var(--transition-normal);
-    text-align: center;
+@keyframes fadeIn {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Animación 'fadeInUp' utilizada en varios elementos */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

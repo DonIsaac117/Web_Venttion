@@ -287,7 +287,7 @@ function configurarAnimacionesBotones() {
  * Configura efectos hover en cards
  */
 function configurarEfectosHover() {
-    const cards = document.querySelectorAll('.valor-card, .ventaja-card, .tech-categoria, .info-card');
+    const cards = document.querySelectorAll('.valor-card, .ventaja-card, .info-card');
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
