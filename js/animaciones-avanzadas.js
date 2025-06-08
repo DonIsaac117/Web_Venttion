@@ -15,14 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Determina si el dispositivo actual es un móvil basándose en el ancho de la ventana.
- * @returns {boolean} Verdadero si es un dispositivo móvil, falso en caso contrario.
- */
-function esDispositivoMovil() {
-    return window.innerWidth < 768; // Ancho típico para dispositivos móviles (tablets y teléfonos)
-}
-
-/**
  * Inicializa todas las animaciones principales
  */
 function inicializarAnimaciones() {
@@ -46,26 +38,16 @@ function configurarCanvasParticulas() {
     const ctx = canvas.getContext('2d');
     let particulas = [];
     
-    // Parámetros de la animación, ajustables para rendimiento en móviles
-    let cantidadParticulas = 60;
-    let tamanoParticulaMax = 1;
-    let tamanoParticulaMin = 1;
-    let velocidadParticulaFactor = 0.3;
-    let opacidadParticulaMax = 0.1;
-    let opacidadParticulaMin = 0.1;
-    let distanciaConexion = 180;
-
-    // Ajustar parámetros si es un dispositivo móvil
-    if (esDispositivoMovil()) {
-        cantidadParticulas = 35; // Menos partículas
-        tamanoParticulaMax = 0.5;
-        tamanoParticulaMin = 0.5;
-        velocidadParticulaFactor = 0.1; // Más lentas
-        opacidadParticulaMax = 0.05;
-        opacidadParticulaMin = 0.05;
-        distanciaConexion = 120; // Conexiones en distancias más cortas
-    }
+    // Determinar si es un dispositivo móvil para ajustar los parámetros
+    const esDispositivoMovil = window.matchMedia('(max-width: 768px)').matches;
     
+    // Parámetros ajustables para móvil
+    const cantidadParticulas = esDispositivoMovil ? 20 : 60; // Menos partículas en móvil
+    const tamanoBase = esDispositivoMovil ? 0.5 : 1;        // Tamaño más pequeño
+    const tamanoVariacion = esDispositivoMovil ? 0.5 : 1;   // Menos variación de tamaño
+    const velocidadBase = esDispositivoMovil ? 0.15 : 0.3; // Velocidad más lenta
+    const distanciaConexion = esDispositivoMovil ? 120 : 180; // Menor distancia para conectar
+
     // Ajustar tamaño del canvas
     function redimensionarCanvas() {
         canvas.width = window.innerWidth;
@@ -80,10 +62,10 @@ function configurarCanvasParticulas() {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.velocidadX = (Math.random() - 0.5) * velocidadParticulaFactor;
-            this.velocidadY = (Math.random() - 0.5) * velocidadParticulaFactor;
-            this.tamano = Math.random() * tamanoParticulaMax + tamanoParticulaMin;
-            this.opacidad = Math.random() * opacidadParticulaMax + opacidadParticulaMin;
+            this.velocidadX = (Math.random() - 0.5) * velocidadBase;
+            this.velocidadY = (Math.random() - 0.5) * velocidadBase;
+            this.tamano = Math.random() * tamanoVariacion + tamanoBase;
+            this.opacidad = Math.random() * 0.1 + 0.1;
             this.color = Math.random() > 0.5 ? '#00d4ff' : '#8b5cf6';
         }
         
